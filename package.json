@@ -1,7 +1,7 @@
 {
   "name": "ee-class",
   "description": "Fast prototype based javascript classes",
-  "version": "1.1.1.1",
+  "version": "1.1.1",
   "homepage": "https://github.com/eventEmitter/ee-class",
   "author": "Michael van der Weg <michael@eventemitter.com> (http://eventemitter.com/)",
   "licence": "mit",

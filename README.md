@@ -12,7 +12,7 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 ## API
 
-The Class implementation is built on top of javascript prototype based inheritance and ECMA Script property descriptors.....
+The Class implementation is built on top of javascript prototype based inheritance and ECMA Script property descriptors..........
 
 ### Constructor
 
