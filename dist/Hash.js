@@ -1,4 +1,4 @@
-/* jshint newcap: false */
+/* jshint newcap: false */ ;
 (function(root, factory) {
     'use strict';
 
@@ -88,29 +88,7 @@
                 obj = obj || {};
                 for (var key in obj) {
                     if (!this.hasOwnProperty(key)) {
-                        Class.define(this, key, {
-                            get: function() {
-                                return obj[key];
-                            },
-                            set: function(val) {
-                                obj[key] = val;
-                            }
-                        });
-                    }
-                }
-                return this;
-            }
-        },
-        mirror: {
-            value: function(obj) {
-                obj = obj || {};
-                for (var key in obj) {
-                    if (!this.hasOwnProperty(key)) {
-                        Class.define(this, key, {
-                            get: function() {
-                                return obj[key];
-                            }
-                        });
+                        this[key] = obj[key];
                     }
                 }
                 return this;

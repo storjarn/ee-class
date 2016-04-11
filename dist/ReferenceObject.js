@@ -1,5 +1,5 @@
-/* jshint newcap: false */
-;(function (root, factory) {
+/* jshint newcap: false */ ;
+(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */
@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.ReferenceObject = factory(null, root.Class);
     }
-}(this, function (require, Class) {
+}(this, function(require, Class) {
     'use strict';
 
     if (require) {
@@ -23,25 +23,25 @@
     }
 
     var ReferenceObject = new Class({
-        init: function(name, props){
-            for(var key in props) {
+        init: function(name, props) {
+            for (var key in props) {
                 this[key] = props[key];
             }
             this.Name = name;
         },
-        toData : function(){
+        toData: function() {
             var ret = {};
-            for(var key in this) {
+            for (var key in this) {
                 if (this.hasOwnProperty(key)) {
                     ret[key] = this[key];
                 }
             }
             return ret;
         },
-        valueOf : function() {
+        valueOf: function() {
             return this.toData();
         },
-        toJSON : function() {
+        toJSON: function() {
             return this.toData();
         }
     });

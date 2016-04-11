@@ -1,5 +1,5 @@
-/* jshint newcap: false */
-;(function (root, factory) {
+/* jshint newcap: false */ ;
+(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */
@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.Namespace = factory(null, root.Class);
     }
-}(this, function (require, Class) {
+}(this, function(require, Class) {
     'use strict';
 
     if (require) {
@@ -32,7 +32,7 @@
             Class.define(self, 'Type', Class(Namespace));
 
             Object.keys(properties).forEach(function(key){
-                Class.define(self, key, Class(properties[key]).Enumerable());
+                Class.define(self, key, Class(properties[key]).Enumerable().Writable());
             });
 
             Class.define(self, 'addClass', Class(function(className, klass) {
@@ -56,7 +56,7 @@
             Class.define(self, 'addNamespace', Class(function(namespace) {
                 assertNamespace(namespace);
                 if (self[namespace.Name])
-                  throw new Error("The indicated namespace '" + namespace.Name + "' already exists in this namespace: '" + self.getFullyQualifiedName() + "'");
+                    throw new Error("The indicated namespace '" + namespace.Name + "' already exists in this namespace: '" + self.getFullyQualifiedName() + "'");
 
                 Class.define(self, namespace.Name, Class(namespace).Enumerable());
                 Class.define(namespace, 'ParentNamespace', Class(self).Enumerable());
@@ -72,13 +72,14 @@
                 return self.getFullyQualifiedName();
             }));
 
-            Class.define(self, 'ParentNamespace', Class(parentNamespace).Enumerable());
             if (parentNamespace) {
+                Class.define(self, 'ParentNamespace', Class(parentNamespace).Enumerable());
                 Class.define(parentNamespace, self.Name, Class(self).Enumerable());
             }
 
             return self;
-        }
+        },
+        ParentNamespace: null
 
     });
 

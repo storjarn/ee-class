@@ -1,5 +1,5 @@
-/* jshint newcap: false */
-;(function (root, factory) {
+/* jshint newcap: false */ ;
+(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */
@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.Collection = factory(null, root.Class);
     }
-}(this, function (require, Class) {
+}(this, function(require, Class) {
     'use strict';
 
     if (require) {
@@ -24,7 +24,7 @@
 
     var Collection = new Class({
         inherits: Array,
-        init: function(items){
+        init: function(items) {
             var self = this;
             var toString = {}.toString;
             items = items || [];
@@ -32,8 +32,9 @@
             function addItem(item) {
                 self.push(item);
             }
+
             function addItems(items1) {
-                for(var i = 0; i < items1.length; ++i) {
+                for (var i = 0; i < items1.length; ++i) {
                     addItem(items1[i]);
                 }
             }
@@ -43,7 +44,7 @@
             } else if (typeof items === 'function') {
                 addItems(items(self));
             } else if (typeof items === 'object') {
-                for(var key in items) {
+                for (var key in items) {
                     addItem(items[key]);
                 }
             }
