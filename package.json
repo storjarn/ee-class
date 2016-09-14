@@ -1,19 +1,11 @@
 {
-  "name": "ee-class",
-  "description": "Fast prototype based javascript classes",
+  "name": "class.js",
+  "description": "Fast prototype based javascript classes for Node.js and the browser",
   "version": "1.1.1",
-  "homepage": "https://github.com/eventEmitter/ee-class",
-  "author": "Michael van der Weg <michael@eventemitter.com> (http://eventemitter.com/)",
-  "licence": "mit",
-  "repository": {
-    "url": "https://github.com/eventEmitter/ee-class.git",
-    "type": "git"
-  },
+  "author": "Christopher Maples <cmaples77@gmail.com>",
+  "licence": "LGPL-3.0",
   "engines": {
     "node": ">=v0.10.0"
-  },
-  "bugs": {
-    "url": "https://github.com/eventEmitter/ee-class/issues"
   },
   "dependencies": {
     "bower": "^1.6.5",
@@ -46,6 +38,5 @@
   "main": "index.js",
   "directories": {
     "test": "test"
-  },
-  "license": "BSD-2-Clause"
+  }
 }
