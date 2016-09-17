@@ -4,7 +4,7 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 ## installation
 
-    npm install storjarn/ee-class
+    npm install ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/class.js.git
 
 * [Class](#class)
 * [EventEmitter](#eventEmitter)
