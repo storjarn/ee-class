@@ -4,7 +4,7 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 ## installation
 
-    npm install ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/class.js.git
+    npm install --save git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/class.js.git
 
 * [Class](#class)
 * [EventEmitter](#eventEmitter)
@@ -174,7 +174,7 @@ A Better solution would be the follwoing:
         init: function(options){
             Object.defineProperty(this, '_storage', {value: {}});
             Class.define(this, '_storage', {value: {}}); // alternative syntax
-            Class.define(this, '_storage', Class({})) // alternatove syntax
+            Class.define(this, '_storage', Class({})) // alternative syntax
 
            ....
         }

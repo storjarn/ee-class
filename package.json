@@ -1,7 +1,7 @@
 {
   "name": "class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser",
-  "version": "1.1.2-0",
+  "version": "1.1.2-1",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -33,11 +33,12 @@
     "class"
   ],
   "scripts": {
-    "devlink": "npm link",
+    "devlink": "npm link && npm link grunt-npm-dev-tools",
+    "devunlink": "npm unlink grunt-npm-dev-tools && npm unlink",
     "test": "grunt test",
     "idPortProcess": "netstat -tulpn | grep 8010",
-    "commit": "git add -A && git commit && grunt package:version:update -v && git push && git push --tags",
-    "patch": "git add -A && git commit && grunt package:version:update:patch -v && git push && git push --tags"
+    "commit": "git add -A && git commit && grunt package:version:update -v && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags",
+    "patch": "git add -A && git commit && grunt package:version:update:patch -v && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags"
   },
   "main": "index.js",
   "directories": {
