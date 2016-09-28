@@ -1,28 +1,62 @@
-# <a name="class"> </a>Class
+# <a name="top"> </a>Class.js
 
-A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast prototype based Javascript Class implementation, that is now available in the browser and node.js.
+A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast prototype based Javascript Class implementation.
 
-## installation
+##### Features:
+
+&#10003; modern `browser` support
+
+&#10003; `Node.js` support
+
+&#10003; [ES6](https://github.com/lukehoban/es6features) compatible-ish
+
+- &#10003; inheritance (`native` included)
+- &#10003; parent method calls (overridden methods)
+- &#10003; read-only/constant + non-enumerable properties (property descriptors)
+- &#10003; `abstract` classing
+
+&#10003; static utilities
+
+&#10003; Namespacing (`Namespace`)
+
+&#10003; Generic Model (`ReferenceObject`)
+
+## Installation
 
     npm install --save git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/class.js.git
 
 * [Class](#class)
+	* [Constructor](#classconstructor)
+	* [Class definition](#classdef)
+	* [functions / overriding / (super) calls](#classfunctions)
+	* [Abstract classes](#abstractclasses)
+	* [Property Descriptors](#classpropertydescriptors)
+	* [Inheritance](#classinheritance)
+	* [Static Helpers](#classstaticmethods)
 * [EventEmitter](#eventEmitter)
 * [Namespace](#namespace)
 
+# <a name="class"> </a>Class
+
 ## API
 
-The Class implementation is built on top of javascript prototype based inheritance and ECMA Script property descriptors..........
+The Class implementation is built on top of javascript [prototype-based inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) and [ECMAScript 5 property descriptors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)..........
 
-### Constructor
+> Although these constructs look like those familiar to developers of class-based languages, they are not the same. JavaScript remains prototype-based. 
 
-Classes can be created using the Class function. The function expects exactly one argument, the class definition.
+<a href="#top">Top</a>
 
-    var MyClass = new Class();
+### <a name="classconstructor"> </a>Constructor
 
-### Class Definition
+Classes can be created using the `Class` function. The function expects exactly one argument, the `class definition`.
 
-#### «inherits» property
+    var MyClass = new Class([classDefinition]);
+
+<a href="#top">Top</a>
+
+### <a name="classdef"> </a>Class Definition
+
+#### `inherits` property
 
 Objects & Functions on this property are handled as the prototype for the prototype of the class you are creating.
 
@@ -34,42 +68,77 @@ Objects & Functions on this property are handled as the prototype for the protot
     // { // MyClass instance
     //      __proto__: { // MyClass protoype (where your items from the classdefinition are placed)
     //         __proto__: { // the Array prototype
-    //              __proto__: {} // the prototype of the array prototype («[Object object]»)
+    //              __proto__: {} // the prototype of the array prototype (`[Object object]`)
     //          }
     //      }
     // }
 ```
 
+<a href="#top">Top</a>
 
-#### «function type» properties
+#### <a name="classfunctions"> </a>`function type` properties / overridden methods / parent method calls
 
-Functions will be placed on the Classes prototype object, they are by default not configurable,
-not writeable and enumerable (except for properties starting with an «_». If the property has
-the name «init» it is treated as the classes constructor.
+Functions will be placed on the Class's prototype object, they are by default not configurable,
+not writeable and enumerable (except for properties starting with an `_`. If the property has
+the name `init` it is treated as the classes constructor.
 
 ```
     var MyClass = new Class({
-        init: function(){
+    	inherits: Date,
+        init: function constructor(){
             console.log('im executed when the class is instantiated');
+            constructor.super.apply(this, arguments);
+        },
+        helloworld: function helloworld() {
+        	console.dir(this); // {init: [Function], helloworld: [Function]} -> the init and helloworld functions are placed on the instances
+                           // prototype
+    		console.log(this.init); // { [Function: init] super: [Function] }
+    		
+    		console.dir(helloworld.super); // null (no parent method, no super....)
+    		
+    		console.log(this instanceof MyClass); // true
+    		console.log(this instanceof Object); // true
+    		console.log(this instanceof Date); // false
         }
     });
 
     var instance = new MyClass(); // im executed when the class is instantiated
 
-    console.dir(instance); // {} -> the init function is placed on the instances
-                           // prototype
-    console.log(intance.init); // { [Function: init] super: [Function] }
-    console.log(instance instanceof MyClass); // true
-    console.log(instance instanceof Object); // true
-    console.log(instance instanceof Date); // false
+    instance.helloworld();
+    
 ```
 
-Note the super property on the init function, it can be used to call the constructor of the next
-constructor function in the prototype chain.
+Note the `super` properties on the `init` (scope-named `constructor`) and `helloworld` functions: either can be used to call the parent class method of the same name.  In this case, it calls the internal constructor of `Date`.  An Error will be thrown if a parent class does not have that method, i.e. `super` is null.
 
-#### «abstract» Classes
+```
+    var MyClass2 = new Class({
+    	inherits: MyClass,  /* from above */
+        init: function constructor(){
+            constructor.super.apply(this, arguments);  //im executed when the class is instantiated
+            this.helloworld();
+        },
+        helloworld: function helloworld() {
+        	helloworld.super.apply(this, arguments);  // Call parent method, NOW with any arguments!
+        	console.log("Hey!!!");
+        },
+        test: true
+    });
 
-Classes can be declared «abstract» by using the class definition property of «isAbstract : true».  This allows the Class to still be inherited but will throw an exception if instantiated directly using the «new» keyword.
+    var instance = new MyClass2(); 
+    /* 
+    	im executed when the class is instantiated 
+    	{init: [Function], helloworld: [Function], test: true}
+    	...
+    	Hey!!!
+    */
+    
+```
+
+<a href="#top">Top</a>
+
+#### <a name="abstractclasses"> </a>`abstract` Classes
+
+Classes can be declared `abstract` by using the class definition property of `isAbstract : true`.  This allows the Class to still be inherited but will throw an exception if instantiated directly using the `new` keyword.
 
 ```
     var MyClass = new Class({
@@ -91,7 +160,9 @@ Classes can be declared «abstract» by using the class definition property of �
     var instance2 = new MyChildClass(); // i'll never get executed when the class is instantiated when using the new keyword directly, but will when called from another Class\' constructor by inheritance.  i'm executed too
 ```
 
-#### Property Descriptors
+<a href="#top">Top</a>
+
+#### <a name="classpropertydescriptors"> </a>Property Descriptors
 
 The Class definition may contain property descriptor objects. You are able to create
 configure each of the properties exactly as you like. You can create getters and setters
@@ -154,7 +225,7 @@ and configure the configurability, the writability and the enumerability.
               init: function(){ ... }
             , _storage: {
                 age: 30     // set by the constructor, ATTENTION: this is shared
-                            // across all «Person» instances
+                            // across all `Person` instances
             }
             , name: ''      // deafult wont be changed anytime
             , age: [Getter / Setter]
@@ -165,7 +236,7 @@ and configure the configurability, the writability and the enumerability.
 ```
 
 
-The example above has one problem. All instances of the «Person» class are going to share the «_storage» property.
+The example above has one problem. All instances of the `Person` class are going to share the `_storage` property.
 This is because it's a property which will not be set on the instance itself but only once on the prototype.
 A Better solution would be the follwoing:
 
@@ -183,9 +254,9 @@ A Better solution would be the follwoing:
     });
 ```
 
+<a href="#top">Top</a>
 
-
-### Inheritance
+### <a name="classinheritance"> </a>Inheritance
 
 Any class may inherit from any other class or built-in types.
 
@@ -217,7 +288,7 @@ Any class may inherit from any other class or built-in types.
 
         , init: function constructor(name, alive) {
             // you need to give the function a name in order to be able to call
-            // its super. you must «call» or «apply» the super function to give
+            // its super. you must `call` or `apply` the super function to give
             // it the correct context
             constructor.super.call(this, alive);
 
@@ -234,7 +305,7 @@ Any class may inherit from any other class or built-in types.
     dylan.talk(); // Hi my name is Dylan, i'm alive :)
 
 
-    // internal structure of the «dylan» Boy instanc
+    // internal structure of the `dylan` Boy instanc
     {
           isAlive: true            // defined by the LifeForm Class constructor
         , name: 'Dylan'                     // defined by the Boy constructor
@@ -260,8 +331,9 @@ Any class may inherit from any other class or built-in types.
 
 ```
 
+<a href="#top">Top</a>
 
-### Static Methods
+### <a name="classstaticmethods"> </a>Static Methods
 
 #### Class()
 
@@ -356,6 +428,8 @@ Inspects the internal structure of the class, returns it. Is helpful for debuggi
     //                 valueOf: [Function] } } } } } }
 ```
 
+<a href="#top">Top</a>
+
 # <a name="eventEmitter"> </a>EventEmitter
 
 ## API
@@ -441,6 +515,7 @@ Inspects the internal structure of the class, returns it. Is helpful for debuggi
                         // finished console output!
 ```
 
+<a href="#top">Top</a>
 
 # <a name="namespace"> </a>Namespace
 
@@ -507,6 +582,7 @@ returns the instance type's name:String
     console.log(myClassInstance.Type.getFullyQualifiedName());  // 'Test.ChildNamespace.TestClass'
 ```
 
+<a href="#top">Top</a>
 
 --------------------
 
@@ -514,15 +590,15 @@ returns the instance type's name:String
 
 - 0.1.0: initial version
 - 0.1.3: fixed integration with eventemitter objects
-- 0.2.0: Added proper implementation for calling super functions, deprecated the «parent» property
-- 0.2.1: Bugfix for the «super implementation»
-- 0.2.2: Deprecated the «super» property and replaced it with the «parent» property beacuse super is a javascript reserved keyword
+- 0.2.0: Added proper implementation for calling super functions, deprecated the `parent` property
+- 0.2.1: Bugfix for the `super implementation`
+- 0.2.2: Deprecated the `super` property and replaced it with the `parent` property beacuse super is a javascript reserved keyword
 - 0.2.3: The constructor takes now n instead of 1 arguments
 - 0.2.4: The constructor may now return a function when overriding the class implementation
-- 0.2.6: Classes expose their defintion now via the «Class.definition» proroperty
+- 0.2.6: Classes expose their defintion now via the `Class.definition` proroperty
 - 0.2.7: Added support fo Object.defineProperties()
 - 0.2.8: Removed all occurences of __proto__ in th eclass implementation, replaced the by Object.getPrototypeOf()
-- 0.3.0: Removed the deprecated «parent» property
+- 0.3.0: Removed the deprecated `parent` property
 - 0.4.0: Removed the default value passed to a class constructor
 - 1.0.0: Complete rewrite, the implementation is now simpler, faster and more JS like. The api is not 100% compaitble with the old api.
 - 1.0.1: Added more test & docs
