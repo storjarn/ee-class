@@ -1,7 +1,7 @@
 {
   "name": "class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.1.2-2",
+  "version": "1.1.2-3",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -40,8 +40,10 @@
     "devunlink": "npm unlink grunt-npm-dev-tools && npm unlink",
     "test": "grunt test",
     "idPortProcess": "netstat -tulpn | grep 8010",
-    "commit": "git add -A && git commit && grunt package:version:update -v && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags",
-    "patch": "git add -A && git commit && grunt package:version:update:patch -v && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags"
+    "commit": "git add -A && git commit && npm version prerelease && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags",
+    "patch": "git add -A && git commit && npm version patch && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags",
+    "version": "node -e \"console.log(require('./package.json').version)\"",
+    "copy.nodeunit": "mkdir -p ./test && cp -R ./node_modules/grunt-npm-dev-tools/lib/nodeunit/test/ ./test"
   },
   "main": "index.js",
   "directories": {
