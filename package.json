@@ -1,7 +1,7 @@
 {
   "name": "class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.1.2-3",
+  "version": "1.1.2-4",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
