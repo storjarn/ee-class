@@ -1,7 +1,7 @@
 {
   "name": "class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.1.2-4",
+  "version": "1.1.2-5",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -22,7 +22,7 @@
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-mocha": "^0.4.11",
     "grunt-mocha-test": "^0.12.4",
-    "grunt-npm-dev-tools": "git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/grunt-npm-dev-tools.git",
+    "grunt-npm-dev-tools": "*",
     "grunt-template-jasmine-istanbul": "^0.3.0",
     "grunt-template-jasmine-requirejs": "^0.2.0",
     "mocha": "^2.0.1",
