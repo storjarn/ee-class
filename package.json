@@ -1,7 +1,7 @@
 {
-  "name": "class.js",
+  "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.1.2-5",
+  "version": "1.2.0",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -22,7 +22,7 @@
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-mocha": "^0.4.11",
     "grunt-mocha-test": "^0.12.4",
-    "grunt-npm-dev-tools": "*",
+    "rig-grunt-npm-dev-tools": "*",
     "grunt-template-jasmine-istanbul": "^0.3.0",
     "grunt-template-jasmine-requirejs": "^0.2.0",
     "mocha": "^2.0.1",
@@ -36,14 +36,14 @@
     "browser"
   ],
   "scripts": {
-    "devlink": "npm link && npm link grunt-npm-dev-tools",
-    "devunlink": "npm unlink grunt-npm-dev-tools && npm unlink",
+    "devlink": "npm link && npm link rig-grunt-npm-dev-tools",
+    "devunlink": "npm unlink rig-grunt-npm-dev-tools && npm unlink",
     "test": "grunt test",
     "idPortProcess": "netstat -tulpn | grep 8010",
     "commit": "git add -A && git commit && npm version prerelease && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags",
     "patch": "git add -A && git commit && npm version patch && git reset --soft HEAD~2 && git commit -m\"$(git log --format=%B  HEAD..HEAD@{1})\" && git push && git push --tags",
     "version": "node -e \"console.log(require('./package.json').version)\"",
-    "copy.nodeunit": "mkdir -p ./test && cp -R ./node_modules/grunt-npm-dev-tools/lib/nodeunit/test/ ./test"
+    "copy.nodeunit": "mkdir -p ./test && cp -R ./node_modules/rig-grunt-npm-dev-tools/lib/nodeunit/test/ ./test"
   },
   "main": "index.js",
   "directories": {
