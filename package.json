@@ -22,7 +22,7 @@
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-mocha": "^0.4.11",
     "grunt-mocha-test": "^0.12.4",
-    "rig-grunt-npm-dev-tools": "*",
+    "rig-grunt-npm-dev-tools": "git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/grunt-npm-dev-tools.git#master",
     "grunt-template-jasmine-istanbul": "^0.3.0",
     "grunt-template-jasmine-requirejs": "^0.2.0",
     "mocha": "^2.0.1",
