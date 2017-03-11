@@ -1,7 +1,7 @@
 {
   "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.2.1-1",
+  "version": "1.2.2",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -41,7 +41,6 @@
     "postinstall": "grunt project:extend && npm run git.install.hooks",
     "idPortProcess": "netstat -tulpn | grep 8010",
     "copy.nodeunit": "mkdir -p ./test && cp -R ./node_modules/rig-grunt-npm-dev-tools/lib/nodeunit/test/ ./test",
-    "precommit": "npm --no-git-tag-version version prerelease --force && git add package.json",
     "getversion": "node -e \"console.log(require('./package.json').version)\"",
     "git.reset.tags": "git tag -l | xargs git tag -d && git fetch --tags",
     "git.revert.commit": "git reset --soft HEAD~1",
