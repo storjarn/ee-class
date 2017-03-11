@@ -1,7 +1,7 @@
 {
   "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -17,7 +17,7 @@
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-connect": "^0.9.0",
     "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-jasmine": "^0.8.1",
+    "grunt-contrib-jasmine": "^0.9.2",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-mocha": "^0.4.11",
     "grunt-mocha-test": "^0.12.4",
@@ -37,8 +37,8 @@
   "scripts": {
     "devlink": "npm link && npm link rig-grunt-npm-dev-tools",
     "devunlink": "npm unlink rig-grunt-npm-dev-tools && npm unlink",
-    "test": "grunt test",
-    "postinstall": "grunt project:extend && npm run git.install.hooks",
+    "test": "grunt mocha",
+    "postinstall": "rm -rf node_modules/*/.git; grunt project:extend && npm run git.install.hooks",
     "idPortProcess": "netstat -tulpn | grep 8010",
     "copy.nodeunit": "mkdir -p ./test && cp -R ./node_modules/rig-grunt-npm-dev-tools/lib/nodeunit/test/ ./test",
     "getversion": "node -e \"console.log(require('./package.json').version)\"",

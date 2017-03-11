@@ -66,9 +66,13 @@
             });
         }
 
-        if (!classDefinition.isAbstract) {
-            classDefinition.isAbstract = false;
-        }
+        var isAbstract = !!classDefinition.isAbstract;
+        Object.defineProperty(classDefinition, 'isAbstract', {
+            get: function() {
+                return isAbstract;
+            },
+            enumerable: false
+        });
 
         // get properties from super class definition
         if (classDefinition.inherits && classDefinition.inherits.___properties) properties = classDefinition.inherits.___properties;
