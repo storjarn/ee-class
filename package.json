@@ -1,7 +1,7 @@
 {
   "name": "rig-classjs",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.2.14",
+  "version": "1.2.15",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -18,26 +18,15 @@
     "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-jasmine": "^0.9.2",
     "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.3",
     "grunt-mocha": "^0.4.15",
     "grunt-mocha-test": "^0.12.7",
     "grunt-template-jasmine-istanbul": "^0.3.4",
     "grunt-template-jasmine-requirejs": "^0.2.3",
     "mocha": "^2.0.1",
     "requirejs": "^2.1.15",
-    "rig-grunt-npm-dev-tools": "git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/grunt-npm-dev-tools.git#master"
+    "rig-grunt-npm-dev-tools": "git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/npm-dev-tools.git#master"
   },
-  "peerDependencies": {
-    "grunt-bower-requirejs": "^1.1.1",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-connect": "^0.9.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-jasmine": "^0.9.2",
-    "grunt-contrib-uglify": "^0.6.0",
-    "grunt-template-jasmine-istanbul": "^0.3.4",
-    "grunt-template-jasmine-requirejs": "^0.2.3",
-    "rig-grunt-npm-dev-tools": "git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/grunt-npm-dev-tools.git#master"
-  },
-  "optionalDependencies": {},
   "keywords": [
     "class",
     "es6",
@@ -45,16 +34,15 @@
     "browser"
   ],
   "scripts": {
-    "devlink": "npm link && npm link rig-grunt-npm-dev-tools",
-    "devunlink": "npm unlink rig-grunt-npm-dev-tools && npm unlink",
+    "devlink": "npm link && npm link rig-npm-dev-tools",
+    "devunlink": "npm unlink rig-npm-dev-tools && npm unlink",
     "test": "grunt mocha",
-    "postinstall": "grunt project:extend && npm run git.install.hooks",
     "idPortProcess": "netstat -tulpn | grep 8010",
     "copy.nodeunit": "mkdir -p ./test && cp -R ./node_modules/rig-grunt-npm-dev-tools/lib/nodeunit/test/ ./test",
-    "getversion": "node -e \"console.log(require('./package.json').version)\"",
     "git.reset.tags": "git tag -l | xargs git tag -d && git fetch --tags",
     "git.revert.commit": "git reset --soft HEAD~1",
-    "git.install.hooks": "cp ./node_modules/rig-grunt-npm-dev-tools/githooks/* .git/hooks/"
+    "git.install.hooks": "cp ./node_modules/rig-grunt-npm-dev-tools/githooks/* .git/hooks/",
+    "getversion": "node -e \"console.log(require('./package.json').version)\""
   },
   "main": "index.js",
   "directories": {
