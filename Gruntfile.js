@@ -60,8 +60,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-mocha-test');
 
-    grunt.loadNpmTasks('grunt-npm-dev-tools');
-
     grunt.loadTasks('tasks');
 
     grunt.registerTask('default', ['cliTest', 'build']);
