@@ -1,7 +1,7 @@
 {
   "name": "rig-classjs",
   "description": "Fast prototype based javascript classes for Node.js and the browser, ES6 compatible",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -25,7 +25,7 @@
     "grunt-template-jasmine-requirejs": "^0.2.3",
     "mocha": "^2.0.1",
     "requirejs": "^2.1.15",
-    "rig-grunt-npm-dev-tools": "git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/npm-dev-tools.git#master"
+    "rig-npm-dev-tools": "git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/npm-dev-tools.git#master"
   },
   "keywords": [
     "class",
@@ -38,10 +38,8 @@
     "devunlink": "npm unlink rig-npm-dev-tools && npm unlink",
     "test": "grunt mocha",
     "idPortProcess": "netstat -tulpn | grep 8010",
-    "copy.nodeunit": "mkdir -p ./test && cp -R ./node_modules/rig-grunt-npm-dev-tools/lib/nodeunit/test/ ./test",
     "git.reset.tags": "git tag -l | xargs git tag -d && git fetch --tags",
     "git.revert.commit": "git reset --soft HEAD~1",
-    "git.install.hooks": "cp ./node_modules/rig-grunt-npm-dev-tools/githooks/* .git/hooks/",
     "getversion": "node -e \"console.log(require('./package.json').version)\""
   },
   "main": "index.js",
