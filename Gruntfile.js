@@ -72,7 +72,7 @@ module.exports = function(grunt) {
         grunt.task.run(['connect:test:keepalive']);
     });
 
-    grunt.registerTask('test', ['cliTest', 'browserTest']);
+    grunt.registerTask('test', ['mochaTest']);
     grunt.registerTask('build', ['bower', 'copy', 'concat', 'uglify']);
 
 };
