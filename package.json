@@ -1,7 +1,7 @@
 {
   "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -36,7 +36,8 @@
     "devunlink": "npm unlink rig-npm-dev-tools && npm unlink",
     "test": "grunt test",
     "idPortProcess": "netstat -tulpn | grep 8010",
-    "getversion": "node -e \"console.log(require('./package.json').version)\""
+    "getversion": "node -e \"console.log(require('./package.json').version)\"",
+    "preinstall": "rm -rf node_modules"
   },
   "main": "index.js",
   "directories": {
