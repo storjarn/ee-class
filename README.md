@@ -23,7 +23,8 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 ## Installation
 
-    npm install --save git+ssh://git@dnvrco-vm-coed0018.conops.timewarnercable.com:7999/npms/class.js.git
+    npm set registry http://dnvrco-vm-coed0018.conops.timewarnercable.com:4873
+    npm install --save rig-class.js
 
 * [Class](#class)
 	* [Constructor](#classconstructor)
@@ -42,7 +43,7 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 The Class implementation is built on top of javascript [prototype-based inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) and [ECMAScript 5 property descriptors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)..........
 
-> Although these constructs look like those familiar to developers of class-based languages, they are not the same. JavaScript remains prototype-based. 
+> Although these constructs look like those familiar to developers of class-based languages, they are not the same. JavaScript remains prototype-based.
 
 <a href="#top">Top</a>
 
@@ -93,9 +94,9 @@ the name `init` it is treated as the classes constructor.
         	console.dir(this); // {init: [Function], helloworld: [Function]} -> the init and helloworld functions are placed on the instances
                            // prototype
     		console.log(this.init); // { [Function: init] super: [Function] }
-    		
+
     		console.dir(helloworld.super); // null (no parent method, no super....)
-    		
+
     		console.log(this instanceof MyClass); // true
     		console.log(this instanceof Object); // true
     		console.log(this instanceof Date); // false
@@ -105,7 +106,7 @@ the name `init` it is treated as the classes constructor.
     var instance = new MyClass(); // im executed when the class is instantiated
 
     instance.helloworld();
-    
+
 ```
 
 Note the `super` properties on the `init` (scope-named `constructor`) and `helloworld` functions: either can be used to call the parent class method of the same name.  In this case, it calls the internal constructor of `Date`.  An Error will be thrown if a parent class does not have that method, i.e. `super` is null.
@@ -124,14 +125,14 @@ Note the `super` properties on the `init` (scope-named `constructor`) and `hello
         test: true
     });
 
-    var instance = new MyClass2(); 
-    /* 
-    	im executed when the class is instantiated 
+    var instance = new MyClass2();
+    /*
+    	im executed when the class is instantiated
     	{init: [Function], helloworld: [Function], test: true}
     	...
     	Hey!!!
     */
-    
+
 ```
 
 <a href="#top">Top</a>
@@ -472,8 +473,8 @@ Inspects the internal structure of the class, returns it. Is helpful for debuggi
 ## usage
 
 ```
-    var   Class             = require( "ee-class" )
-        , EventEmitter      = require( "ee-event-emitter" );
+    var   Class             = require( "rig-class.js" )
+        , EventEmitter      = require( "rig-class.js/dist/EventEmitter.min.js" );
 
 
     var Human = new Class( {
@@ -557,7 +558,7 @@ returns the instance type's name:String
 ## usage
 
 ```
-    var Namespace = require( "ee-class/dist/Namespace.min" );
+    var Namespace = require( "rig-class.js/dist/Namespace.min.js" );
     var namespace = new Namespace("Test", null, {hello: function(){ console.log("I'm a namespace!")}});
     console.log(namespace.hello());  // "I'm a namespace!"
     console.log(namespace.Name);  // "Test"
@@ -585,27 +586,3 @@ returns the instance type's name:String
 <a href="#top">Top</a>
 
 --------------------
-
-# Version History
-
-- 0.1.0: initial version
-- 0.1.3: fixed integration with eventemitter objects
-- 0.2.0: Added proper implementation for calling super functions, deprecated the `parent` property
-- 0.2.1: Bugfix for the `super implementation`
-- 0.2.2: Deprecated the `super` property and replaced it with the `parent` property beacuse super is a javascript reserved keyword
-- 0.2.3: The constructor takes now n instead of 1 arguments
-- 0.2.4: The constructor may now return a function when overriding the class implementation
-- 0.2.6: Classes expose their defintion now via the `Class.definition` proroperty
-- 0.2.7: Added support fo Object.defineProperties()
-- 0.2.8: Removed all occurences of __proto__ in th eclass implementation, replaced the by Object.getPrototypeOf()
-- 0.3.0: Removed the deprecated `parent` property
-- 0.4.0: Removed the default value passed to a class constructor
-- 1.0.0: Complete rewrite, the implementation is now simpler, faster and more JS like. The api is not 100% compaitble with the old api.
-- 1.0.1: Added more test & docs
-- 1.0.2: Fixed docs
-- 1.0.5: The class contructor function can now return an object as its instance
-- 1.0.6: The class contructor function can now return any type that is not undefined as its instance
-- 1.0.7: If the class inherits from a native javascript object it will map the super of the init function to it
-- 1.0.8: If a class is instantiated without the new keyword it now throws a menaingful error
-- 1.0.9: Added the Class.inspect method
-- 1.1.0: fixes tests, adds cli and browser tests as grunt tasks, removes concated all.js, add bower, adds npm script to lookup errant server pid, adds browser support
