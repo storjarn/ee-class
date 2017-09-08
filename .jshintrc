@@ -1,0 +1,23 @@
+{
+  "curly": true,
+  "loopfunc": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": false,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "boss": true,
+  "eqnull": true,
+  "node": true,
+  "browser": true,
+  "mocha": true,
+  "jasmine": true,
+  "globals": {
+    "define": true,
+    "Class": true,
+    "EventEmitter": true,
+    "Namespace": true
+  }
+}

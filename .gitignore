@@ -17,6 +17,7 @@ bower_components
 
 npm-debug.log
 
-test/coverage
+coverage
 .grunt/
+jshint.xml
 _SpecRunner.html

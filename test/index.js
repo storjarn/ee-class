@@ -1,7 +1,6 @@
 /* globals Class, EventEmitter, assert */
 /* jshint newcap: false */
-;
-(function(root, factory) {
+;(function(root, factory) {
     'use strict';
     var assert;
 
@@ -417,8 +416,9 @@
         it('#1 - properties', function() {
             var Person = new Class({
                 init: function(options) {
-                    if (options && options.name !== undefined) this.name = options.name;
-                    if (options && options.age !== undefined) this.age = options.age;
+                    options = options || {};
+                    this.name = options.name || null;
+                    this.age = options.age || null;
                 },
 
                 // the private storage for the age value
@@ -435,9 +435,13 @@
                         return this._storage.age;
                     },
                     set: function(value) {
-                        if (value < 0) throw new Error('Please provide an age >= 0!');
-                        else if (value > 150) throw new Error('You are too old to be processed by this system, sorry!');
-                        else this._storage.age = value;
+                        if (value < 0) {
+                            throw new Error('Please provide an age >= 0!');
+                        } else if (value > 150) {
+                            throw new Error('You are too old to be processed by this system, sorry!');
+                        } else {
+                            this._storage.age = value;
+                        }
                     },
                     enumerable: true
                     /* , configurable: false */ // defaults to false
@@ -525,8 +529,9 @@
         it('The static «Class.proto» method should return the class proto', function() {
             var Person = new Class({
                 init: function(options) {
-                    if (options && options.name !== undefined) this.name = options.name;
-                    if (options && options.age !== undefined) this.age = options.age;
+                    options = options || {};
+                    this.name = options.name || null;
+                    this.age = options.age || null;
                 },
 
                 // the private storage for the age value
@@ -543,9 +548,13 @@
                         return this._storage.age;
                     },
                     set: function(value) {
-                        if (value < 0) throw new Error('Please provide an age >= 0!');
-                        else if (value > 150) throw new Error('You are too old to be processed by this system, sorry!');
-                        else this._storage.age = value;
+                        if (value < 0) {
+                            throw new Error('Please provide an age >= 0!');
+                        } else if (value > 150) {
+                            throw new Error('You are too old to be processed by this system, sorry!');
+                        } else {
+                            this._storage.age = value;
+                        }
                     },
                     enumerable: true
                     /* , configurable: false */ // defaults to false
@@ -627,8 +636,9 @@
         it('The static «Class.implement» method should implement a class on another object', function() {
             var Person = new Class({
                 init: function(options) {
-                    if (options && options.name !== undefined) this.name = options.name;
-                    if (options && options.age !== undefined) this.age = options.age;
+                    options = options || {};
+                    this.name = options.name || null;
+                    this.age = options.age || null;
                 },
 
                 // the private storage for the age value
@@ -645,9 +655,13 @@
                         return this._storage.age;
                     },
                     set: function(value) {
-                        if (value < 0) throw new Error('Please provide an age >= 0!');
-                        else if (value > 150) throw new Error('You are too old to be processed by this system, sorry!');
-                        else this._storage.age = value;
+                        if (value < 0) {
+                            throw new Error('Please provide an age >= 0!');
+                        } else if (value > 150) {
+                            throw new Error('You are too old to be processed by this system, sorry!');
+                        } else {
+                            this._storage.age = value;
+                        }
                     },
                     enumerable: true
                     /* , configurable: false */ // defaults to false

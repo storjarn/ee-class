@@ -4,30 +4,28 @@ module.exports = function(grunt) {
     var configName = 'jasmine';
 
     config.test = {
-        src: [
-            'lib/**/*.js'
-        ],
+        src: '<%= paths.lib %>',
         options: {
             banner: '<a href="./coverage/">Coverage</a>\n',
             specs: 'test/index.js',
             helpers: 'spec/*Helper.js',
             template: require('grunt-template-jasmine-istanbul'),
             templateOptions: {
-                coverage: 'test/coverage/coverage.json',
+                coverage: 'coverage/coverage.json',
                 report: [{
                     type: 'html',
                     options: {
-                        dir: 'test/coverage'
+                        dir: 'coverage'
                     }
                 }, {
                     type: 'lcov',
                     options: {
-                        dir: 'test/coverage/lcov-report'
+                        dir: 'coverage/lcov-report'
                     }
                 }, {
                     type: 'cobertura',
                     options: {
-                        dir: 'test/coverage/cobertura'
+                        dir: 'coverage/cobertura'
                     }
                 }, {
                     type: 'text-summary'

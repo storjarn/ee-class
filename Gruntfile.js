@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
     // Project configuration.
-    grunt.initConfig({
+    var config = {
         pkg: grunt.file.readJSON('package.json'),
         copy: {
             lib: {
@@ -47,8 +47,30 @@ module.exports = function(grunt) {
                 transitive: true,
                 'exclude-dev': true
             }
+        },
+
+        paths: {
+            lib: [
+                'lib/**/*.js'
+            ],
+            test: [
+                'test/**/*.js',
+            ],
+            utility: [
+                'Gruntfile.js',
+                'tasks/*.js'
+            ]
         }
-    });
+    };
+
+    // Build config
+    config.paths.all = config.paths.lib
+        .concat(config.paths.test)
+        .concat(config.paths.utility);
+
+    // Project configuration.
+    grunt.initConfig(config);
+
 
     //Build
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -60,7 +82,18 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-mocha-test');
 
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-force-task');
+
     grunt.loadTasks('tasks');
+
+    grunt.registerTask('test', '', function() {
+        grunt.task.run(['jshint:all', 'mochaTest']);
+    });
+
+    grunt.registerTask('ci', 'Runs the test functions in a CI environment, i.e. used to generate report dumps for process management', function() {
+        grunt.task.run(['force:jshint:ci', 'jshint:all', 'mochaTest']);
+    });
 
     grunt.registerTask('default', ['cliTest', 'build']);
 
@@ -72,7 +105,6 @@ module.exports = function(grunt) {
         grunt.task.run(['connect:test:keepalive']);
     });
 
-    grunt.registerTask('test', ['mochaTest']);
     grunt.registerTask('build', ['bower', 'copy', 'concat', 'uglify']);
 
 };
