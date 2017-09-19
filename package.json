@@ -1,7 +1,7 @@
 {
   "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -25,7 +25,7 @@
     "grunt-template-jasmine-requirejs": "^0.2.0",
     "mocha": "^2.0.1",
     "requirejs": "^2.1.15",
-    "rig-npm-dev-tools": "^1.1.6"
+    "rig-npm-dev-tools": "^1.1.9"
   },
   "keywords": [
     "class",
@@ -41,15 +41,15 @@
     "getversion": "node -e \"console.log(require('./package.json').version)\"",
     "preinstall": "rm -rf node_modules",
     "getname": "node -e \"console.log(require('./package.json').name)\"",
-    "republish": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) && npm publish",
+    "republish": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) && npm publish --tag next",
     "unpublishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion); npm run patchversion;",
     "getpublished": "npm show \"$(npm run -s getname)\" versions",
     "setpatchversion": "npm version patch --no-git-tag-version --force",
     "setminorversion": "npm version minor --no-git-tag-version --force",
     "setmajorversion": "npm version major --no-git-tag-version --force",
     "setprereleaseversion": "npm version prerelease  --no-git-tag-version --force",
-    "setdevelopmentversion": "npm run patchversion -s >/dev/null; npm version \"$(npm run -s generateAlphaVersion)\" --no-git-tag-version --force; npm publish",
-    "generateAlphaVersion": "node -e \"console.log('$(npm run -s getversion)-alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.'))\""
+    "setdevelopmentversion": "npm run setpatchversion -s >/dev/null; npm version \"$(npm run -s generateAlphaVersion)\" --no-git-tag-version --force; npm publish --tag next",
+    "generateAlphaVersion": "node -e \"console.log('$(npm run -s getversion)-alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.') + '.1')\""
   },
   "main": "index.js",
   "directories": {
