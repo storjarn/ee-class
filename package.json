@@ -1,7 +1,7 @@
 {
   "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -42,14 +42,16 @@
     "preinstall": "rm -rf node_modules",
     "getname": "node -e \"console.log(require('./package.json').name)\"",
     "republish": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) && npm publish --tag next",
-    "unpublishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion); npm run patchversion;",
+    "unpublishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion); npm run setpatchversion;",
     "getpublished": "npm show \"$(npm run -s getname)\" versions",
     "setpatchversion": "npm version patch --no-git-tag-version --force",
     "setminorversion": "npm version minor --no-git-tag-version --force",
     "setmajorversion": "npm version major --no-git-tag-version --force",
     "setprereleaseversion": "npm version prerelease  --no-git-tag-version --force",
     "setdevelopmentversion": "npm run setpatchversion -s >/dev/null; npm version \"$(npm run -s generateAlphaVersion)\" --no-git-tag-version --force; npm publish --tag next",
-    "generateAlphaVersion": "node -e \"console.log('$(npm run -s getversion)-alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.') + '.1')\""
+    "generateAlphaVersion": "node -e \"console.log('$(npm run -s getversion)-alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.') + '.1')\"",
+    "reinstall": "rm -rf node_modules && time npm install",
+    "scripts": "node -e \"console.log(require('./package.json').scripts)\""
   },
   "main": "index.js",
   "directories": {
