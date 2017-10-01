@@ -1,49 +1,49 @@
 
 [0m[0m
 [0m  [Classdefinition] A Class[0m
-[2K[0G  [32m  ✓[0m[90m should can have enumerable properties of all types [0m
-[2K[0G  [32m  ✓[0m[90m should be able to return its __proto__ [0m
-[2K[0G  [32m  ✓[0m[90m should be able to accept property definitions [0m
-[2K[0G  [32m  ✓[0m[90m should respect the configuration of property definers [0m
-[2K[0G  [32m  ✓[0m[90m should respect the configuration of property definers [0m
-[2K[0G  [32m  ✓[0m[90m should execute the constructor function [0m
-[2K[0G  [32m  ✓[0m[90m should accept generated property definers [0m
-[2K[0G  [32m  ✓[0m[90m should set the correct scope in getters / setters [0m
+[2K[0G  [32m  ✓[0m[90m should can have enumerable properties of all types[0m
+[2K[0G  [32m  ✓[0m[90m should be able to return its __proto__[0m
+[2K[0G  [32m  ✓[0m[90m should be able to accept property definitions[0m
+[2K[0G  [32m  ✓[0m[90m should respect the configuration of property definers[0m
+[2K[0G  [32m  ✓[0m[90m should respect the configuration of property definers[0m
+[2K[0G  [32m  ✓[0m[90m should execute the constructor function[0m
+[2K[0G  [32m  ✓[0m[90m should accept generated property definers[0m
+[2K[0G  [32m  ✓[0m[90m should set the correct scope in getters / setters[0m
 
 [0m  [Inheritance] A Class[0m
-[2K[0G  [32m  ✓[0m[90m should be able to inherit from another class [0m
-[2K[0G  [32m  ✓[0m[90m should be able to inherit from two classes [0m
-[2K[0G  [32m  ✓[0m[90m should be able to inherit from two classes and skipping prototypes when calling super methods [0m
-[2K[0G  [32m  ✓[0m[90m should be able to inherit from a native JS type [0m
-[2K[0G  [32m  ✓[0m[90m should be an instance of its constructor and its prototype constructors [0m
+[2K[0G  [32m  ✓[0m[90m should be able to inherit from another class[0m
+[2K[0G  [32m  ✓[0m[90m should be able to inherit from two classes[0m
+[2K[0G  [32m  ✓[0m[90m should be able to inherit from two classes and skipping prototypes when calling super methods[0m
+[2K[0G  [32m  ✓[0m[90m should be able to inherit from a native JS type[0m
+[2K[0G  [32m  ✓[0m[90m should be an instance of its constructor and its prototype constructors[0m
 
 [0m  [Contructor][0m
-[2K[0G  [32m  ✓[0m[90m A class should be able to return an object as its instance [0m
+[2K[0G  [32m  ✓[0m[90m A class should be able to return an object as its instance[0m
 
 [0m  [Generic Tests][0m
-[2K[0G  [32m  ✓[0m[90m A Class should throw an error when instantiated without the new keyword [0m
-[2K[0G  [32m  ✓[0m[90m An abstract Class should throw an error when instantiated with the new keyword [0m
-[2K[0G  [32m  ✓[0m[90m #1 - properties [0m
-[2K[0G  [32m  ✓[0m[90m #2 - inheritance [0m
+[2K[0G  [32m  ✓[0m[90m A Class should throw an error when instantiated without the new keyword[0m
+[2K[0G  [32m  ✓[0m[90m An abstract Class should throw an error when instantiated with the new keyword[0m
+[2K[0G  [32m  ✓[0m[90m #1 - properties[0m
+[2K[0G  [32m  ✓[0m[90m #2 - inheritance[0m
 
 [0m  [Static methods][0m
-[2K[0G  [32m  ✓[0m[90m The static «Class.proto» method should return the class proto [0m
-[2K[0G  [32m  ✓[0m[90m Describe the classes methods [0m
-[2K[0G  [32m  ✓[0m[90m The static «Class.implement» method should implement a class on another object [0m
+[2K[0G  [32m  ✓[0m[90m The static «Class.proto» method should return the class proto[0m
+[2K[0G  [32m  ✓[0m[90m Describe the classes methods[0m
+[2K[0G  [32m  ✓[0m[90m The static «Class.implement» method should implement a class on another object[0m
 
 [0m  [Namespace] A Namespace[0m
-[2K[0G  [32m  ✓[0m[90m should be able to return an object as its instance [0m
-[2K[0G  [32m  ✓[0m[90m should be able to get a namespace's type [0m
-[2K[0G  [32m  ✓[0m[90m should be able to add a class to itself [0m
-[2K[0G  [32m  ✓[0m[90m should be able to get a class' fully qualified name [0m
-[2K[0G  [32m  ✓[0m[90m should throw an error when adding a class without a classname [0m
-[2K[0G  [32m  ✓[0m[90m should throw an error when adding a class with a class name that is already a property on the namespace [0m
-[2K[0G  [32m  ✓[0m[90m should be able to get a class instance's type [0m
-[2K[0G  [32m  ✓[0m[90m should be able to get a class instance's type name [0m
-[2K[0G  [32m  ✓[0m[90m should be able to add another namespace to itself [0m
-[2K[0G  [32m  ✓[0m[90m should throw an error when adding a child namespace that is already on the parent namespace [0m
-[2K[0G  [32m  ✓[0m[90m should be able to get a child namespace's fully qualified name [0m
+[2K[0G  [32m  ✓[0m[90m should be able to return an object as its instance[0m
+[2K[0G  [32m  ✓[0m[90m should be able to get a namespace's type[0m
+[2K[0G  [32m  ✓[0m[90m should be able to add a class to itself[0m
+[2K[0G  [32m  ✓[0m[90m should be able to get a class' fully qualified name[0m
+[2K[0G  [32m  ✓[0m[90m should throw an error when adding a class without a classname[0m
+[2K[0G  [32m  ✓[0m[90m should throw an error when adding a class with a class name that is already a property on the namespace[0m
+[2K[0G  [32m  ✓[0m[90m should be able to get a class instance's type[0m
+[2K[0G  [32m  ✓[0m[90m should be able to get a class instance's type name[0m
+[2K[0G  [32m  ✓[0m[90m should be able to add another namespace to itself[0m
+[2K[0G  [32m  ✓[0m[90m should throw an error when adding a child namespace that is already on the parent namespace[0m
+[2K[0G  [32m  ✓[0m[90m should be able to get a child namespace's fully qualified name[0m
 
 
-[92m [0m[32m 32 passing[0m[90m (21ms)[0m
+[92m [0m[32m 32 passing[0m[90m (68ms)[0m
 

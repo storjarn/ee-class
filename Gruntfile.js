@@ -62,17 +62,17 @@ module.exports = function(grunt) {
 
     grunt.loadTasks('grunt');
 
-    grunt.registerTask('default', ['cliTest', 'build']);
+    grunt.registerTask('default', ['build', 'cliTest']);
 
     grunt.registerTask('mocha', ['mochaTest']);
 
-    grunt.registerTask('cliTest', ['jasmine', 'mochaTest']);
+    grunt.registerTask('cliTest', ['mochaTest', 'jasmine']);
     grunt.registerTask('browserTest', '', function() {
         console.log("Test server can be found at:", "localhost:" + 8010 + "/test/");
         grunt.task.run(['connect:test:keepalive']);
     });
 
-    grunt.registerTask('test', ['cliTest', 'browserTest']);
+    grunt.registerTask('test', ['build', 'cliTest', 'browserTest']);
     grunt.registerTask('build', ['bower', 'copy', 'concat', 'uglify']);
 
 };

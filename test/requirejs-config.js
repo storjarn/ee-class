@@ -3,8 +3,10 @@ require.config({
 
     },
     paths: {
+        dist: '../dist',
         Class: '../dist/Class.min',
         EventEmitter: '../dist/EventEmitter.min',
+        Namespace: '../dist/Namespace.min',
         'node-assert': 'bower_components/node-assert/assert',
         requirejs: 'bower_components/requirejs/require',
         jasmine: 'bower_components/jasmine/lib/jasmine-core',
@@ -18,11 +20,12 @@ require.config({
 
 require(
     [
-        "../dist/Class.min", "../dist/EventEmitter.min"
+        "../dist/Class.min", "../dist/EventEmitter.min", "../dist/Namespace.min"
     ],
-    function(Class, EventEmitter) {
+    function(Class, EventEmitter, Namespace) {
         window.Class = Class;
         window.EventEmitter = EventEmitter;
+        window.Namespace = Namespace;
         // console.log(window.Class, window.EventEmitter);
 
         // Set up the HTML reporter - this is reponsible for
