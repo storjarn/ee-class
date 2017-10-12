@@ -1,26 +1,22 @@
-/* istanbul ignore next */ ;
-(function(root, factory) {
+/* istanbul ignore next */
+;(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['require'], factory);
+        define(['../dist/Class.min'], factory);
     } else if (typeof exports === 'object') {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like environments that support module.exports,
         // like Node.
-        module.exports = factory(null, require('../dist/Class.min'));
+        module.exports = factory(require('../dist/Class.min'));
     } else {
         // Browser globals (root is window)
-        root.EventEmitter = factory(null, root.Class);
+        root.EventEmitter = factory(root.Class);
     }
-}(this, function(require, Class) {
+}(this, function(Class) {
     'use strict';
-
-    if (require) {
-        Class = require('../dist/Class.min.js');
-    }
 
     var log = console.log;
 
@@ -30,7 +26,9 @@
 
         ___events: {
             get: function() {
-                if (!Object.hasOwnProperty.call(this, '____events')) Class.define(this, '____events', Class({}).Writable());
+                if (!Object.hasOwnProperty.call(this, '____events')) {
+                    Class.define(this, '____events', Class({}).Writable());
+                }
                 return this.____events;
             }
         },
@@ -47,7 +45,9 @@
 
                     if (typeof current.listener === 'function') {
                         current.listener.apply(null, Array.prototype.slice.call(args, 1));
-                        if (current.once) this.___events[event].splice(i, 1);
+                        if (current.once) {
+                            this.___events[event].splice(i, 1);
+                        }
                     } else {
                         this.___events[event].splice(i, 1);
                         throw new Error('cannot emit event «' + event + '», listener is typeof «' + typeof current.listener + '»');
@@ -84,7 +84,9 @@
                             this.___events[event].splice(i, 1);
                         }
                     }
-                } else if (this.___events[event]) delete this.___events[event];
+                } else if (this.___events[event]) {
+                    delete this.___events[event];
+                }
             } else {
                 this.____events = {};
             }
@@ -125,7 +127,9 @@
 
         // adds a listenr, somehow private
         addListener: function(event, listener, once) {
-            if (!this.___events[event]) this.___events[event] = [];
+            if (!this.___events[event]) {
+                this.___events[event] = [];
+            }
 
             this.emit('listener', event, listener, once === true);
 

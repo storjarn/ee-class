@@ -1,16 +1,16 @@
 /* globals Class, EventEmitter, assert */
 /* jshint newcap: false */
-;(function(root, factory) {
+(function(root, factory) {
     'use strict';
     var assert;
 
     if (typeof define === 'function' && define.amd) {
-        define(['../lib/Class', '../lib/EventEmitter', '../lib/Namespace'], factory);
+        define(['../dist/Class.min', '../dist/EventEmitter.min', '../dist/Namespace.min'], factory);
     } else if (typeof exports === 'object') {
         (function() {
-            var Class = require('../lib/Class');
-            var EventEmitter = require('../lib/EventEmitter');
-            var Namespace = require('../lib/Namespace');
+            var Class = require('../dist/Class.min');
+            var EventEmitter = require('../dist/EventEmitter.min');
+            var Namespace = require('../dist/Namespace.min');
             assert = require('assert');
 
             factory(Class, EventEmitter, Namespace, assert);
@@ -416,9 +416,12 @@
         it('#1 - properties', function() {
             var Person = new Class({
                 init: function(options) {
-                    options = options || {};
-                    this.name = options.name || null;
-                    this.age = options.age || null;
+                    if (options && options.name !== undefined) {
+                        this.name = options.name;
+                    }
+                    if (options && options.age !== undefined) {
+                        this.age = options.age;
+                    }
                 },
 
                 // the private storage for the age value
@@ -529,9 +532,12 @@
         it('The static «Class.proto» method should return the class proto', function() {
             var Person = new Class({
                 init: function(options) {
-                    options = options || {};
-                    this.name = options.name || null;
-                    this.age = options.age || null;
+                    if (options && options.name !== undefined) {
+                        this.name = options.name;
+                    }
+                    if (options && options.age !== undefined) {
+                        this.age = options.age;
+                    }
                 },
 
                 // the private storage for the age value
@@ -636,9 +642,12 @@
         it('The static «Class.implement» method should implement a class on another object', function() {
             var Person = new Class({
                 init: function(options) {
-                    options = options || {};
-                    this.name = options.name || null;
-                    this.age = options.age || null;
+                    if (options && options.name !== undefined) {
+                        this.name = options.name;
+                    }
+                    if (options && options.age !== undefined) {
+                        this.age = options.age;
+                    }
                 },
 
                 // the private storage for the age value

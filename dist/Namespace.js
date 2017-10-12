@@ -1,27 +1,71 @@
-/* jshint newcap: false */ ;
-(function(root, factory) {
+/* jshint newcap: false */
+;(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['require'], factory);
+        define(['../dist/Class.min'], factory);
     } else if (typeof exports === 'object') {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like environments that support module.exports,
         // like Node.
-        module.exports = factory(null, require('../dist/Class.min'));
+        module.exports = factory(require('../dist/Class.min'));
     } else {
         // Browser globals (root is window)
-        root.Namespace = factory(null, root.Class);
+        root.Namespace = factory(root.Class);
     }
-}(this, function(require, Class) {
+}(this, function(Class) {
     'use strict';
 
-    if (require) {
-        Class = require('../dist/Class.min.js');
-    }
+    /* @private */
 
+    var assertClass = function(klass, error) {
+        if (!klass || (typeof klass !== "function")) {
+            throw new Error(error || "You need to provide a valid class. ");
+        }
+    };
+
+    /* @private */
+
+    var assertNamespace = function(namespace, error) {
+        if (!namespace || !(namespace instanceof Namespace)) {
+            throw new Error(error || "You need to provide a valid namespace.");
+        }
+    };
+
+    /* @private */
+
+    var registerClass = function(nameSpace, className, klass) {
+        assertNamespace(nameSpace);
+        if (!className) {
+            throw new Error("You need to provide a class name as the second argument");
+        }
+        assertClass(klass);
+
+        Class.define(klass, 'ParentNamespace', Class(nameSpace).Enumerable());
+        Class.define(nameSpace, className, Class(klass).Enumerable());
+
+        if (!klass.hasOwnProperty('getFullyQualifiedName')) {
+            Class.define(klass, 'getFullyQualifiedName', Class(function() {
+                return nameSpace.getFullyQualifiedName() + "." + className;
+            }));
+
+            Class.define(klass, 'toString', Class(function() {
+                return "[Class " + klass.getFullyQualifiedName() + "]";
+            }));
+        }
+
+        if (!klass.hasOwnProperty('TypeName') || !klass.prototype.hasOwnProperty('Type')) {
+            Class.define(klass, 'TypeName', Class(className));
+            Class.define(klass.prototype, 'Type', Class(klass));
+        }
+
+        return klass;
+    };
+
+    /* @public */
+    /* jshint latedef:false */
     var Namespace = new Class({
         init: function(name, parentNamespace, properties) {
             var self = this;
@@ -36,7 +80,7 @@
             });
 
             Class.define(self, 'addClass', Class(function(className, klass) {
-                if (arguments.length == 1) {
+                if (arguments.length === 1) {
                     klass = className;
                     className = klass.TypeName;
                 }
@@ -55,8 +99,9 @@
 
             Class.define(self, 'addNamespace', Class(function(namespace) {
                 assertNamespace(namespace);
-                if (self[namespace.Name])
+                if (self[namespace.Name]) {
                     throw new Error("The indicated namespace '" + namespace.Name + "' already exists in this namespace: '" + self.getFullyQualifiedName() + "'");
+                }
 
                 Class.define(self, namespace.Name, Class(namespace).Enumerable());
                 Class.define(namespace, 'ParentNamespace', Class(self).Enumerable());
@@ -82,51 +127,6 @@
         ParentNamespace: null
 
     });
-
-
-    /* @private */
-
-    var registerClass = function(nameSpace, className, klass) {
-        assertNamespace(nameSpace);
-        if (!className) throw new Error("You need to provide a class name as the second argument");
-        assertClass(klass);
-
-        Class.define(klass, 'ParentNamespace', Class(nameSpace).Enumerable());
-        Class.define(nameSpace, className, Class(klass).Enumerable());
-
-        if (!klass.hasOwnProperty('getFullyQualifiedName')) {
-            Class.define(klass, 'getFullyQualifiedName', Class(function() {
-                return nameSpace.getFullyQualifiedName() + "." + className;
-            }));
-
-            Class.define(klass, 'toString', Class(function() {
-                return "[Class " + klass.getFullyQualifiedName() + "]";
-            }));
-        }
-
-        if (!klass.hasOwnProperty('TypeName') || !klass.prototype.hasOwnProperty('Type')) {
-            Class.define(klass, 'TypeName', Class(className));
-            Class.define(klass.prototype, 'Type', Class(klass));
-        }
-
-        return klass;
-    };
-
-    /* @private */
-
-    var assertNamespace = function(namespace, error) {
-        if (!namespace || !(namespace instanceof Namespace)) {
-            throw new Error(error || "You need to provide a valid namespace.");
-        }
-    };
-
-    /* @private */
-
-    var assertClass = function(klass, error) {
-        if (!klass || (typeof klass !== "function")) {
-            throw new Error(error || "You need to provide a valid class. ");
-        }
-    };
 
     return Namespace;
 

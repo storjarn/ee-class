@@ -11,21 +11,21 @@ module.exports = function(grunt) {
             helpers: 'spec/*Helper.js',
             template: require('grunt-template-jasmine-istanbul'),
             templateOptions: {
-                coverage: 'coverage/coverage.json',
+                coverage: 'test/coverage/coverage.json',
                 report: [{
                     type: 'html',
                     options: {
-                        dir: 'coverage'
+                        dir: 'test/coverage'
                     }
                 }, {
                     type: 'lcov',
                     options: {
-                        dir: 'coverage/lcov-report'
+                        dir: 'test/coverage/lcov-report'
                     }
                 }, {
                     type: 'cobertura',
                     options: {
-                        dir: 'coverage/cobertura'
+                        dir: 'test/coverage/cobertura'
                     }
                 }, {
                     type: 'text-summary'
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                     lines: 70,
                     statements: 70,
                     branches: 50,
-                    functions: 75
+                    functions: 45
                 }
             }
         }

@@ -88,18 +88,18 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
     grunt.registerTask('test', '', function() {
-        grunt.task.run(['jshint:all', 'mochaTest']);
+        grunt.task.run(['jshint:all', 'build', 'cliTest', 'browserTest']);
     });
 
     grunt.registerTask('ci', 'Runs the test functions in a CI environment, i.e. used to generate report dumps for process management', function() {
-        grunt.task.run(['force:jshint:ci', 'jshint:all', 'mochaTest']);
+        grunt.task.run(['force:jshint:ci', 'jshint:all', 'build', 'cliTest']);
     });
 
     grunt.registerTask('default', ['cliTest', 'build']);
 
     grunt.registerTask('mocha', ['mochaTest']);
 
-    grunt.registerTask('cliTest', ['jasmine', 'mochaTest']);
+    grunt.registerTask('cliTest', ['mochaTest', 'jasmine']);
     grunt.registerTask('browserTest', '', function() {
         console.log("Test server can be found at:", "localhost:" + 8010 + "/test/");
         grunt.task.run(['connect:test:keepalive']);

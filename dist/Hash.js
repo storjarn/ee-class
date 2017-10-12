@@ -1,26 +1,22 @@
-/* jshint newcap: false */ ;
-(function(root, factory) {
+/* jshint newcap: false */
+;(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['require'], factory);
+        define(['../dist/Class.min'], factory);
     } else if (typeof exports === 'object') {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like environments that support module.exports,
         // like Node.
-        module.exports = factory(null, require('../dist/Class.min'));
+        module.exports = factory(require('../dist/Class.min'));
     } else {
         // Browser globals (root is window)
-        root.Hash = factory(null, root.Class);
+        root.Hash = factory(root.Class);
     }
-}(this, function(require, Class) {
+}(this, function(Class) {
     'use strict';
-
-    if (require) {
-        Class = require('../dist/Class.min.js');
-    }
 
     var Hash = new Class({
         inherits: Object,
