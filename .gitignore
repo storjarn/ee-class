@@ -21,3 +21,5 @@ test/coverage
 .grunt/
 jshint.xml
 _SpecRunner.html
+test.log
+coverage/
