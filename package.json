@@ -1,7 +1,7 @@
 {
   "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
-  "version": "1.1.18",
+  "version": "1.1.19",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -23,6 +23,7 @@
     "grunt-mocha-test": "^0.12.4",
     "grunt-template-jasmine-istanbul": "^0.3.0",
     "grunt-template-jasmine-requirejs": "^0.2.0",
+    "grunt-todos": "^0.3.0",
     "mocha": "^2.0.1",
     "requirejs": "^2.1.15",
     "rig-npm-dev-tools": "^1.1.9"
