@@ -1,7 +1,7 @@
 {
   "name": "rig-class.js",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
   "engines": {
@@ -20,6 +20,7 @@
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-force-task": "^2.0.0",
+    "grunt-jsbeautifier": "^0.2.13",
     "grunt-mocha": "^0.4.11",
     "grunt-mocha-test": "^0.12.4",
     "grunt-template-jasmine-istanbul": "^0.3.0",
@@ -50,7 +51,7 @@
     "setminorversion": "npm version minor --no-git-tag-version --force",
     "setmajorversion": "npm version major --no-git-tag-version --force",
     "setprereleaseversion": "npm version prerelease  --no-git-tag-version --force",
-    "setdevelopmentversion": "npm run setpatchversion -s >/dev/null; npm version \"$(npm run -s generateAlphaVersion)\" --no-git-tag-version --force; npm publish $(npm -s run getname)@$(npm -s run getversion) --tag $(npm -s run generateAlphaTag)",
+    "setdevelopmentversion": "npm run setpatchversion -s >/dev/null; npm version \"$(npm run -s generateAlphaVersion)\" --no-git-tag-version --force; npm publish --tag $(npm -s run generateAlphaTag)",
     "generateAlphaVersion": "echo \"$(npm run -s getversion)-$(npm run -s generateAlphaTag).1\"",
     "reinstall": "rm -rf node_modules && time npm install",
     "scripts": "node -e \"console.log(require('./package.json').scripts)\"",

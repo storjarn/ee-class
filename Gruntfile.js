@@ -93,5 +93,3 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['bower', 'copy', 'concat', 'uglify']);
 
 };
-
-
