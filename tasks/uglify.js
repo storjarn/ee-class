@@ -39,4 +39,6 @@ module.exports = function(grunt) {
     };
 
     grunt.config.set(configName, config);
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 };
