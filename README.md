@@ -2,6 +2,8 @@
 
 A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast prototype based Javascript Class implementation.
 
+[![Build Status](https://jenkins.bf.lab.charter.com/buildStatus/icon?job=NodePackages/Class.js)](https://jenkins.bf.lab.charter.com/job/NodePackages/job/Class.js/)
+
 ##### Features:
 
 &#10003; modern `browser` support
@@ -20,6 +22,13 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 &#10003; Namespacing (`Namespace`)
 
 &#10003; Generic Model (`ReferenceObject`)
+
+---
+
+![npm-enabled](https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png =40x15 "NPM-enabled")
+![grunt-enabled](https://gruntjs.com/img/og.png =32x32 "Grunt-enabled")
+
+---
 
 ## Installation
 
