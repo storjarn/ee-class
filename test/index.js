@@ -24,7 +24,7 @@
     assert = !!assert ? assert : false;
 
     describe('[Classdefinition] A Class', function() {
-        it('should can have enumerable properties of all types', function() {
+        it('can have enumerable properties of all types', function() {
 
             var properties = {
                 number: 5,
@@ -114,38 +114,13 @@
         });
 
 
-        it('should respect the configuration of property definers', function() {
-            var Test = new Class({
-                me: {
-                    value: 'michael'
-                }
-            });
-            var Test2 = new Class({
-                me: {
-                    value: 'michael',
-                    enumerable: true
-                }
-            });
-            var instance = new Test();
-            var instance2 = new Test2();
-
-            if (assert) {
-                assert.deepEqual(Class.keys(instance), []);
-                assert.deepEqual(Class.keys(instance2), ['me']);
-            } else {
-                expect(JSON.stringify(Class.keys(instance))).toBe('[]');
-                expect(JSON.stringify(Class.keys(instance2))).toBe('["me"]');
-            }
-        });
-
-
         it('should execute the constructor function', function() {
             var Test = new Class({
-                    init: function() {
-                        this.name = 'michael';
-                    }
-                }),
-                instance = new Test();
+                init: function() {
+                    this.name = 'michael';
+                }
+            });
+            instance = new Test();
 
             if (assert) {
                 assert.deepEqual(instance, {
@@ -235,7 +210,7 @@
         });
 
 
-        it('should be able to inherit from two classes', function() {
+        it('should be able to inherit from a class chain', function() {
             var Test = new Class({
                 init: function() {
                     return 2;
@@ -263,7 +238,7 @@
         });
 
 
-        it('should be able to inherit from two classes and skipping prototypes when calling super methods', function() {
+        it('should be able to inherit from a class chain and skip prototypes when calling super methods', function() {
             var Test = new Class({
                 init: function() {
                     return 2;
