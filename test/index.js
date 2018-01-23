@@ -21,7 +21,8 @@
 }(this, function(Class, EventEmitter, Namespace, assert) {
     'use strict';
 
-    instance = null;
+    var instance = null;
+    var instance2 = null;
 
     assert = !!assert ? assert : false;
 
