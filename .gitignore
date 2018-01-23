@@ -1,3 +1,7 @@
+# platform artifacts
+.DS_Store
+
+# generics
 lib-cov
 *.seed
 *.log
@@ -15,13 +19,12 @@ node_modules
 bower_components
 .grunt
 
-npm-debug.log
-
-test/coverage
-.grunt/
+# test artifacts
 jshint.xml
 _SpecRunner.html
-test.log
 coverage/
+
+# tool artifacts
 TODOS
-.DS_Store
+
+
