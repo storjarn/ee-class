@@ -54,10 +54,10 @@ node('CentOS-7') {
 
                 sh 'echo ${APP_VERSION} > VERSION'
 
-                sh 'bower -v'
                 //TODO:: need to figure out the environment and conditions that will need this
                 // sh 'rm -rf node_modules'
                 sh 'npm install'
+                sh 'bower install'
 
             }
 
