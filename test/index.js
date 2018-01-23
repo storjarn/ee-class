@@ -21,6 +21,8 @@
 }(this, function(Class, EventEmitter, Namespace, assert) {
     'use strict';
 
+    var instance = null;
+
     assert = !!assert ? assert : false;
 
     describe('[Classdefinition] A Class', function() {
