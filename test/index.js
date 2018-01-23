@@ -21,7 +21,7 @@
 }(this, function(Class, EventEmitter, Namespace, assert) {
     'use strict';
 
-    var instance = null;
+    instance = null;
 
     assert = !!assert ? assert : false;
 
@@ -61,9 +61,9 @@
 
         it('should be able to return its __proto__', function() {
             var Test = new Class({
-                    me: 'michael'
-                }),
-                instance = new Test();
+                me: 'michael'
+            });
+            instance = new Test();
 
             if (assert) {
                 assert.deepEqual(Class.proto(instance), {
@@ -77,11 +77,11 @@
 
         it('should be able to accept property definitions', function() {
             var Test = new Class({
-                    me: {
-                        value: 'michael'
-                    }
-                }),
-                instance = new Test();
+                me: {
+                    value: 'michael'
+                }
+            });
+            instance = new Test();
 
             if (assert) {
                 assert.deepEqual(instance.me, 'michael');
@@ -103,8 +103,8 @@
                     enumerable: true
                 }
             });
-            var instance = new Test();
-            var instance2 = new Test2();
+            instance = new Test();
+            instance2 = new Test2();
 
             if (assert) {
                 assert.deepEqual(Class.keys(instance), []);
@@ -202,7 +202,7 @@
                     this.number = init.super.call(this);
                 }
             });
-            var instance = new Test2();
+            instance = new Test2();
 
             if (assert) {
                 assert.equal(instance.number, 2);
@@ -230,7 +230,7 @@
                     this.number = init.super.call(this);
                 }
             });
-            var instance = new Test3();
+            instance = new Test3();
 
             if (assert) {
                 assert.equal(instance.number, 2);
@@ -255,7 +255,7 @@
                     this.number = init.super.call(this);
                 }
             });
-            var instance = new Test3();
+            instance = new Test3();
 
             if (assert) {
                 assert.equal(instance.number, 2);
@@ -277,7 +277,7 @@
                     }
                 }
             });
-            var instance = new Test();
+            instance = new Test();
 
             instance.push('hi');
             instance.push('my');
@@ -307,7 +307,7 @@
                     }
                 }
             });
-            var instance = new Test();
+            instance = new Test();
 
             if (assert) {
                 assert.ok(instance instanceof Test);
@@ -435,7 +435,7 @@
                 }
             });
 
-            var instance = new Person({
+            instance = new Person({
                 name: 'Michael',
                 age: 30
             });
@@ -480,7 +480,7 @@
             });
 
 
-            var instance = new Boy('Dylan', true);
+            instance = new Boy('Dylan', true);
 
             if (assert) {
                 assert.equal(instance.isAlive, true);
@@ -552,7 +552,7 @@
             });
 
 
-            var instance = new Person({
+            instance = new Person({
                 name: 'Michael',
                 age: 30
             });
@@ -597,7 +597,7 @@
                 jump: function() {}
             });
 
-            var instance = new Boy('Dylan', true);
+            instance = new Boy('Dylan', true);
             var description = Class.inspect(instance);
 
             if (assert) {
@@ -661,7 +661,7 @@
             });
 
 
-            var instance = new Person({
+            instance = new Person({
                 name: 'Michael',
                 age: 30
             });
