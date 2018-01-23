@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         options: {
             verbose: false
         },
-        TODOS : ['globals.js', 'index.js', '<%= paths.lib %>', '<%= paths.utility %>', '<%= paths.test %>', '!tasks/todos.js']
+        TODOS: ['globals.js', 'index.js', '<%= paths.lib %>', '<%= paths.utility %>', '<%= paths.test %>', '!tasks/todos.js']
     };
 
     grunt.config.set('todos', config);

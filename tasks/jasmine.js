@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     config.test = {
         src: '<%= paths.lib %>',
         options: {
-            banner: '<a href="./coverage/">Coverage</a>\n',
+            banner: '<a href="/coverage/">Coverage</a>\n',
             specs: 'test/index.js',
             helpers: 'spec/*Helper.js',
             template: require('grunt-template-jasmine-istanbul'),
@@ -41,4 +41,6 @@ module.exports = function(grunt) {
     };
 
     grunt.config.set(configName, config);
+
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 };

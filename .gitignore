@@ -24,3 +24,4 @@ _SpecRunner.html
 test.log
 coverage/
 TODOS
+.DS_Store
