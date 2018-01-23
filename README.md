@@ -26,6 +26,30 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
     npm set registry http://dnvrco-vm-coed0018.conops.timewarnercable.com:4873
     npm install --save rig-class.js
 
+## Testing
+
+### Run the tests for CI
+
+```
+grunt ci  # Jenkinsfile runs this one
+```
+
+### Run the tests in the terminal and in the browser
+
+```
+grunt test
+```
+
+## Tools
+
+```
+grunt beautify
+
+grunt todos
+```
+
+---
+
 * [Class](#class)
 	* [Constructor](#classconstructor)
 	* [Class definition](#classdef)
@@ -36,6 +60,7 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 	* [Static Helpers](#classstaticmethods)
 * [EventEmitter](#eventEmitter)
 * [Namespace](#namespace)
+
 
 # <a name="class"> </a>Class
 
