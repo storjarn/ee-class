@@ -50,9 +50,15 @@ grunt test
 ## Tools
 
 ```
-grunt beautify
+grunt beautify # :D
+grunt todos # generate a TODOS file with all the todos in the code listed out
+grunt jshint # lint that shiz
 
-grunt todos
+# other (sub) tasks
+grunt browserTest
+grunt mocha
+grunt build # minify et al, primarily used pre-test
+# see Gruntfile for more....
 ```
 
 ---
