@@ -4,6 +4,9 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 [![Build Status](https://jenkins.bf.lab.charter.com/buildStatus/icon?job=NodePackages/Class.js)](https://jenkins.bf.lab.charter.com/job/NodePackages/job/Class.js/)
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="40" title="NPM-enabled" border="0" />
+<img src="https://gruntjs.com/img/og.png" width="32" title="Grunt-enabled" border="0" />
+
 ##### Features:
 
 &#10003; modern `browser` support
@@ -22,11 +25,6 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 &#10003; Namespacing (`Namespace`)
 
 &#10003; Generic Model (`ReferenceObject`)
-
----
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="40" title="NPM-enabled" border="0" />
-<img src="https://gruntjs.com/img/og.png" width="32" title="Grunt-enabled" border="0" />
 
 ---
 
