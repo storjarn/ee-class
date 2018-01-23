@@ -110,8 +110,8 @@
                 // property descriptor
                 if (Object.hasOwnProperty.call(property, 'get') || Object.hasOwnProperty.call(property, 'value') || Object.hasOwnProperty.call(property, 'set')) {
                     if (!Object.keys(property).some(function(key) {
-                        return ['get', 'set', 'value', 'enumerable', 'writable', 'configurable'].indexOf(key) === -1;
-                    })) {
+                            return ['get', 'set', 'value', 'enumerable', 'writable', 'configurable'].indexOf(key) === -1;
+                        })) {
                         // there ar eno other keys on the obejct, we should expect a definition herre
                         properties[key] = property;
                         // Object.defineProperty(properties, key, property);
@@ -163,8 +163,7 @@
 
             if (this.init) {
                 result = this.init.apply(this, Array.prototype.slice.call(arguments));
-            }
-            else if (typeof classDefinition.inherits === 'function') {
+            } else if (typeof classDefinition.inherits === 'function') {
                 classDefinition.inherits.apply(this, Array.prototype.slice.call(arguments));
             }
 

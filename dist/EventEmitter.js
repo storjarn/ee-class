@@ -1,5 +1,5 @@
 /* istanbul ignore next */
-;(function(root, factory) {
+(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */
@@ -58,9 +58,9 @@
                     return a instanceof Error;
                 });
 
-				console.warn('Emitting error event without listeners!');
-				console.trace.apply(console, errs);
-			}
+                console.warn('Emitting error event without listeners!');
+                console.trace.apply(console, errs);
+            }
 
             return this;
         },

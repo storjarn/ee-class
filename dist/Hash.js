@@ -1,5 +1,5 @@
 /* jshint newcap: false */
-;(function(root, factory) {
+(function(root, factory) {
     'use strict';
 
     /* istanbul ignore next */

@@ -53,6 +53,8 @@ node('CentOS-7') {
                 //:: a possible place for refactoring based on things like BRANCH, VERSION, etc.
 
                 sh 'echo ${APP_VERSION} > VERSION'
+
+                sh 'bower -v'
                 //TODO:: need to figure out the environment and conditions that will need this
                 // sh 'rm -rf node_modules'
                 sh 'npm install'
