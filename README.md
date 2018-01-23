@@ -25,8 +25,8 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 ---
 
-![npm-enabled](https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png =40x15 "NPM-enabled")
-![grunt-enabled](https://gruntjs.com/img/og.png =32x32 "Grunt-enabled")
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="40" title="NPM-enabled" />
+<img src="https://gruntjs.com/img/og.png" width="32" title="Grunt-enabled" />
 
 ---
 
