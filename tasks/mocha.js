@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         lines: 40,
         statements: 40,
         branches: 50,
-        functions: 45
+        functions: 40
     };
 
     config = { //Node.js tests
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 quiet: false, // Optionally suppress output to standard out (defaults to false)
                 clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
             },
-            src: ['test/index.js']
+            src: ['<%= paths.test %>']
         }
     };
 
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 
     config = {
         coverage: {
-            src: ['test/index.js'],
+            src: ['<%= paths.test %>'],
             options: {
                 // mask: '*.spec.js'.
                 coverageFolder: 'coverageMocha',

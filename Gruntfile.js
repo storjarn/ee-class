@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 'lib/**/*.js'
             ],
             test: [
-                'test/**/*.js',
+                'test/index.js',
             ],
             utility: [
                 'Gruntfile.js',
