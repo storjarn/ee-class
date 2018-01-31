@@ -75,7 +75,7 @@ node('CentOS-7') {
                     keepAll: true,
                     reportDir: 'coverage',
                     reportFiles: 'index.html',
-                    reportName: "Cobertura Report"
+                    reportName: "Coverage Report"
                 ])
 
             }
