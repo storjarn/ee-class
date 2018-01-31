@@ -1,10 +1,9 @@
 
 [0m[0m
 [0m  [Classdefinition] A Class[0m
-[2K[0G  [32m  ✓[0m[90m should can have enumerable properties of all types[0m
+[2K[0G  [32m  ✓[0m[90m can have enumerable properties of all types[0m
 [2K[0G  [32m  ✓[0m[90m should be able to return its __proto__[0m
 [2K[0G  [32m  ✓[0m[90m should be able to accept property definitions[0m
-[2K[0G  [32m  ✓[0m[90m should respect the configuration of property definers[0m
 [2K[0G  [32m  ✓[0m[90m should respect the configuration of property definers[0m
 [2K[0G  [32m  ✓[0m[90m should execute the constructor function[0m
 [2K[0G  [32m  ✓[0m[90m should accept generated property definers[0m
@@ -12,8 +11,8 @@
 
 [0m  [Inheritance] A Class[0m
 [2K[0G  [32m  ✓[0m[90m should be able to inherit from another class[0m
-[2K[0G  [32m  ✓[0m[90m should be able to inherit from two classes[0m
-[2K[0G  [32m  ✓[0m[90m should be able to inherit from two classes and skipping prototypes when calling super methods[0m
+[2K[0G  [32m  ✓[0m[90m should be able to inherit from a class chain[0m
+[2K[0G  [32m  ✓[0m[90m should be able to inherit from a class chain and skip prototypes when calling super methods[0m
 [2K[0G  [32m  ✓[0m[90m should be able to inherit from a native JS type[0m
 [2K[0G  [32m  ✓[0m[90m should be an instance of its constructor and its prototype constructors[0m
 
@@ -45,5 +44,5 @@
 [2K[0G  [32m  ✓[0m[90m should be able to get a child namespace's fully qualified name[0m
 
 
-[92m [0m[32m 32 passing[0m[90m (69ms)[0m
+[92m [0m[32m 31 passing[0m[90m (39ms)[0m
 
