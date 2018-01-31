@@ -69,9 +69,28 @@ node('CentOS-7') {
 
                 sh 'grunt ci'
 
-                step([$class: 'CoberturaPublisher', failNoReports: false, autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage/cobertura/cobertura-coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false, lineCoverageTargets: '80.0, 0, 0', methodCoverageTargets: '80.0, 0, 0', conditionalCoverageTargets: '70.0, 0, 0', packageCoverageTargets: '70.0, 0, 0', fileCoverageTargets: '70.0, 0, 0', classCoverageTargets: '70.0, 0, 0'])
+                step([
+                    $class: 'CoberturaPublisher',
+                    failNoReports: false,
+                    autoUpdateHealth: false,
+                    autoUpdateStability: false,
+                    coberturaReportFile: '**/coverage/cobertura/cobertura-coverage.xml',
+                    failUnhealthy: false,
+                    failUnstable: false,
+                    maxNumberOfBuilds: 0,
+                    onlyStable: false,
+                    sourceEncoding: 'ASCII',
+                    zoomCoverageChart: false,
+                    lineCoverageTargets: '80.0, 0, 0',
+                    methodCoverageTargets: '80.0, 0, 0',
+                    conditionalCoverageTargets: '70.0, 0, 0',
+                    packageCoverageTargets: '70.0, 0, 0',
+                    fileCoverageTargets: '70.0, 0, 0',
+                    classCoverageTargets: '70.0, 0, 0'
+                ])
 
-                publishHTML (target: [
+                publishHTML (
+                    target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
