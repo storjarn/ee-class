@@ -69,14 +69,14 @@ node('CentOS-7') {
 
                 sh 'grunt ci'
 
-                // publishHTML (target: [
-                //     allowMissing: false,
-                //     alwaysLinkToLastBuild: false,
-                //     keepAll: true,
-                //     reportDir: 'coverage',
-                //     reportFiles: 'index.html',
-                //     reportName: "Cobertura Report"
-                // ])
+                publishHTML (target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'coverage',
+                    reportFiles: 'index.html',
+                    reportName: "Cobertura Report"
+                ])
 
             }
 
