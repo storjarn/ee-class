@@ -89,6 +89,7 @@ node('CentOS-7') {
                     classCoverageTargets: '70.0, 0, 0'
                 ])
 
+                // Jasmine/Istanbul (headless browser tests)
                 publishHTML (
                     target: [
                     allowMissing: false,
@@ -96,7 +97,18 @@ node('CentOS-7') {
                     keepAll: true,
                     reportDir: 'coverage',
                     reportFiles: 'index.html',
-                    reportName: "Coverage HTML"
+                    reportName: "Coverage HTML (Browser)"
+                ])
+
+                // Mocha/Istanbul (CLI tests)
+                publishHTML (
+                    target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'coverageMocha',
+                    reportFiles: 'index.html',
+                    reportName: "Coverage HTML (CLI)"
                 ])
 
             }

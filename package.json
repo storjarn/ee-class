@@ -1,12 +1,23 @@
 {
   "name": "rig-class.js",
+  "version": "1.1.49",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
-  "version": "1.1.46",
-  "author": "Christopher Maples <cmaples77@gmail.com>",
   "licence": "LGPL-3.0",
+  "main": "index.js",
   "engines": {
     "node": ">=v0.10.0"
   },
+  "keywords": [
+    "class",
+    "es6",
+    "node",
+    "browser"
+  ],
+  "author": "Christopher Maples <cmaples77@gmail.com>",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
   "devDependencies": {
     "bower": "^1.6.5",
     "connect": "^3.3.3",
@@ -22,6 +33,7 @@
     "grunt-force-task": "^2.0.0",
     "grunt-jsbeautifier": "^0.2.13",
     "grunt-mocha": "^0.4.11",
+    "grunt-mocha-istanbul": "^5.0.2",
     "grunt-mocha-test": "^0.12.4",
     "grunt-template-jasmine-istanbul": "^0.3.0",
     "grunt-template-jasmine-requirejs": "^0.2.0",
@@ -30,46 +42,35 @@
     "requirejs": "^2.1.15",
     "rig-npm-dev-tools": "^1.1.9"
   },
-  "keywords": [
-    "class",
-    "es6",
-    "node",
-    "browser"
-  ],
   "scripts": {
     "devlink": "npm link && npm link rig-npm-dev-tools",
     "devunlink": "npm unlink rig-npm-dev-tools && npm unlink",
-    "test": "grunt test",
-    "idPortProcess": "netstat -tulpn | grep 8010",
-    "getversion": "node -e \"console.log(require('./package.json').version)\"",
-    "preinstall": "rm -rf node_modules",
-    "getname": "node -e \"console.log(require('./package.json').name)\"",
-    "republish": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) && npm publish --tag latest",
-    "unpublishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) || npm dist-tag rm \"$(npm -s run getname)\" \"$(npm -s run generateAlphaTag)\"; npm run setpatchversion;",
-    "getpublished": "npm show \"$(npm run -s getname)\" versions",
-    "setpatchversion": "npm version patch --no-git-tag-version --force",
-    "setminorversion": "npm version minor --no-git-tag-version --force",
-    "setmajorversion": "npm version major --no-git-tag-version --force",
-    "setprereleaseversion": "npm version prerelease  --no-git-tag-version --force",
-    "setdevelopmentversion": "npm run setpatchversion -s >/dev/null; npm version \"$(npm run -s generateAlphaVersion)\" --no-git-tag-version --force; npm publish --tag $(npm -s run generateAlphaTag)",
-    "generateAlphaVersion": "echo \"$(npm run -s getversion)-$(npm run -s generateAlphaTag).1\"",
-    "reinstall": "rm -rf node_modules && time npm install",
-    "scripts": "node -e \"console.log(require('./package.json').scripts)\"",
-    "getscripts": "node -e \"console.log(require('./package.json').scripts)\"",
-    "packages.disk_usage": "du -csHh node_modules/*",
-    "git.reset.tags": "if [ $ALLOWED='true' ]; then git tag -l | xargs git tag -d && git fetch --tags; else echo 'Please dont delete all the tags'; fi",
-    "git.revert.commit": "git reset --soft HEAD~1",
-    "republishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) && npm publish --tag $(npm -s run generateAlphaTag)",
-    "generateAlphaTag": "node -e \"console.log('alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.'))\"",
-    "total.disk_usage": "du -csHh -I \"..\" ./.*",
     "disk_usage": "du -csHh ./*",
+    "generateAlphaTag": "node -e \"console.log('alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.'))\"",
+    "generateAlphaVersion": "echo \"$(npm run -s getversion)-$(npm run -s generateAlphaTag).1\"",
     "getdisttags": "npm dist-tag ls",
     "getgittags": "git tag",
-    "removeMergeArtifacts": "find . -name '*.orig' -delete"
-  },
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {}
+    "getname": "node -e \"console.log(require('./package.json').name)\"",
+    "getpublished": "npm show \"$(npm run -s getname)\" versions",
+    "getscripts": "node -e \"console.log(require('./package.json').scripts)\"",
+    "getversion": "node -e \"console.log(require('./package.json').version)\"",
+    "git.reset.tags": "if [ $ALLOWED='true' ]; then git tag -l | xargs git tag -d && git fetch --tags; else echo 'Please dont delete all the tags'; fi",
+    "git.revert.commit": "git reset --soft HEAD~1",
+    "idPortProcess": "netstat -tulpn | grep 8010",
+    "packages.disk_usage": "du -csHh node_modules/*",
+    "preinstall": "rm -rf node_modules",
+    "reinstall": "rm -rf node_modules && time npm install",
+    "removeMergeArtifacts": "find . -name '*.orig' -delete",
+    "republish": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) && npm publish --tag latest",
+    "republishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) && npm publish --tag $(npm -s run generateAlphaTag)",
+    "scripts": "node -e \"console.log(require('./package.json').scripts)\"",
+    "setdevelopmentversion": "npm run setpatchversion -s >/dev/null; npm version \"$(npm run -s generateAlphaVersion)\" --no-git-tag-version --force; npm publish --tag $(npm -s run generateAlphaTag)",
+    "setmajorversion": "npm version major --no-git-tag-version --force",
+    "setminorversion": "npm version minor --no-git-tag-version --force",
+    "setpatchversion": "npm version patch --no-git-tag-version --force",
+    "setprereleaseversion": "npm version prerelease  --no-git-tag-version --force",
+    "test": "grunt test",
+    "total.disk_usage": "du -csHh -I \"..\" ./.*",
+    "unpublishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) || npm dist-tag rm \"$(npm -s run getname)\" \"$(npm -s run generateAlphaTag)\"; npm run setpatchversion;"
+  }
 }
