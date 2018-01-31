@@ -3,6 +3,13 @@ module.exports = function(grunt) {
     var config = {};
     var configName = 'mochaTest';
 
+    var coverageThresholds = {
+        lines: 40,
+        statements: 40,
+        branches: 50,
+        functions: 45
+    };
+
     config = { //Node.js tests
         test: {
             options: {
@@ -27,13 +34,8 @@ module.exports = function(grunt) {
             options: {
                 // mask: '*.spec.js'.
                 coverageFolder: 'coverageMocha',
-                check: {
-                    lines: 40,
-                    statements: 40,
-                    branches: 50,
-                    functions: 45
-                },
-                reportFormats: ['cobertura','lcovonly', 'html']
+                check: coverageThresholds,
+                reportFormats: ['cobertura', 'lcovonly', 'html']
             }
         }
     };
@@ -48,10 +50,7 @@ module.exports = function(grunt) {
         default: {
             options: {
                 coverageFolder: 'coverage*', // will check both coverage folders and merge the coverage results
-                check: {
-                    lines: 80,
-                    statements: 80
-                }
+                check: coverageThresholds
             }
         }
     };
