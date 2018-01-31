@@ -4,7 +4,7 @@ A fork of [eventEmitter](https://github.com/eventEmitter/ee-class)'s fast protot
 
 [![Build Status](https://jenkins.bf.lab.charter.com/buildStatus/icon?job=NodePackages/Class.js_pipeline)](https://jenkins.bf.lab.charter.com/job/NodePackages/job/Class.js_pipeline/)
 
-[Coverage Report](https://jenkins.bf.lab.charter.com/job/NodePackages/job/Class.js_pipeline/Coverage_Report/)
+[Coverage Report](https://jenkins.bf.lab.charter.com/job/NodePackages/job/Class.js_pipeline/Coverage_HTML/)
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1200px-Npm-logo.svg.png" width="40" title="NPM-enabled" border="0" />
 <img src="https://gruntjs.com/img/og.png" width="32" title="Grunt-enabled" border="0" />
