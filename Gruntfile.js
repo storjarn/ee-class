@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 'lib/**/*.js'
             ],
             test: [
-                'test/**/*.js',
+                'test/index.js',
             ],
             utility: [
                 'Gruntfile.js',
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['cliTest', 'build']);
 
-    grunt.registerTask('mocha', ['clean', 'mochaTest']);
+    grunt.registerTask('mocha', ['clean', 'mocha_istanbul']);
 
     grunt.registerTask('cliTest', ['mocha', 'jasmine']);
     grunt.registerTask('browserTest', '', function() {

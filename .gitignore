@@ -23,8 +23,9 @@ bower_components
 jshint.xml
 _SpecRunner.html
 coverage/
+results.txt
+coverageMocha
+coverage
 
 # tool artifacts
 TODOS
-
-
