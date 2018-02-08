@@ -27,6 +27,7 @@ node('CentOS-7') {
 
                 echo "PROJECT - ${PROJECT}, REPOSITORY - ${REPOSITORY}, PRAUTHOR - ${PRAUTHOR}, PRURL - ${PRURL}, PRTITLE - ${PRTITLE}, PRID - ${PRID}"
 
+                currentBuild.result = "PENDING"
                 step([$class: 'StashNotifier'])
             }
 
