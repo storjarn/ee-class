@@ -27,7 +27,7 @@ node('CentOS-7') {
 
                 echo "PROJECT - ${PROJECT}, REPOSITORY - ${REPOSITORY}, PRAUTHOR - ${PRAUTHOR}, PRURL - ${PRURL}, PRTITLE - ${PRTITLE}, PRID - ${PRID}"
 
-                currentBuild.result = currentBuild.currentResult
+                currentBuild.result = "INPROGRESS"
                 step([$class: 'StashNotifier'])
             }
 
