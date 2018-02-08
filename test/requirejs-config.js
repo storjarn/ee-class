@@ -4,9 +4,9 @@ require.config({
     },
     paths: {
         dist: '../dist',
-        Class: '../dist/Class.min',
-        EventEmitter: '../dist/EventEmitter.min',
-        Namespace: '../dist/Namespace.min',
+        Class: '../lib/Class',
+        EventEmitter: '../lib/EventEmitter',
+        Namespace: '../lib/Namespace',
         'node-assert': 'bower_components/node-assert/assert',
         requirejs: 'bower_components/requirejs/require',
         jasmine: 'bower_components/jasmine/lib/jasmine-core',
@@ -20,7 +20,7 @@ require.config({
 
 require(
     [
-        "../dist/Class.min", "../dist/EventEmitter.min", "../dist/Namespace.min"
+        "../lib/Class", "../lib/EventEmitter", "../lib/Namespace"
     ],
     function(Class, EventEmitter, Namespace) {
         window.Class = Class;

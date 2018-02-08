@@ -5,12 +5,12 @@
     var assert;
 
     if (typeof define === 'function' && define.amd) {
-        define(['../dist/Class.min', '../dist/EventEmitter.min', '../dist/Namespace.min'], factory);
+        define(['../lib/Class', '../lib/EventEmitter', '../lib/Namespace'], factory);
     } else if (typeof exports === 'object') {
         (function() {
-            var Class = require('../dist/Class.min');
-            var EventEmitter = require('../dist/EventEmitter.min');
-            var Namespace = require('../dist/Namespace.min');
+            var Class = require('../lib/Class');
+            var EventEmitter = require('../lib/EventEmitter');
+            var Namespace = require('../lib/Namespace');
             assert = require('assert');
 
             factory(Class, EventEmitter, Namespace, assert);
