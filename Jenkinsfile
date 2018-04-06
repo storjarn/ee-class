@@ -58,8 +58,8 @@ node('CentOS-7') {
 
                     //TODO:: need to figure out the environment and conditions that will need this
                     // sh 'rm -rf node_modules'
-                    sh 'npm install'
-                    sh 'bower install'
+                    // sh 'npm install'
+                    // sh 'bower install'
                     sh 'sleep 65'
 
                 }

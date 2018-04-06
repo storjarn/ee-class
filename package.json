@@ -1,6 +1,6 @@
 {
   "name": "rig-class.js",
-  "version": "1.1.67",
+  "version": "1.1.68",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
   "licence": "LGPL-3.0",
   "main": "index.js",
@@ -46,7 +46,7 @@
     "devlink": "npm link && npm link rig-npm-dev-tools",
     "devunlink": "npm unlink rig-npm-dev-tools && npm unlink",
     "disk_usage": "du -csHh ./*",
-    "generateAlphaTag": "node -e \"console.log('alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.'))\"",
+    "generateAlphaTag": "node -e \"console.log('alpha.' + '$(git rev-parse --abbrev-ref HEAD)'.replace(/\\\\\\|\\/|\\-/g, '.').replace(/\\_/gi, ''))\"",
     "generateAlphaVersion": "echo \"$(npm run -s getversion)-$(npm run -s generateAlphaTag).1\"",
     "getdisttags": "npm dist-tag ls",
     "getgittags": "git tag",
