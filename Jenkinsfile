@@ -4,17 +4,17 @@ import hudson.Util;
 
 node('CentOS-7') {
 
-    timeout(1) {
+    String BRANCH = "${BRANCH}"
+    String PROJECT="${PROJECT}"
+    String REPOSITORY="${REPOSITORY}"
+    String PRAUTHOR="${PRAUTHOR}"
+    String PRURL="${PRURL}"
+    String PRTITLE="${PRTITLE}"
+    String PRID="${PRID}"
 
-        String BRANCH = "${BRANCH}"
-        String PROJECT="${PROJECT}"
-        String REPOSITORY="${REPOSITORY}"
-        String PRAUTHOR="${PRAUTHOR}"
-        String PRURL="${PRURL}"
-        String PRTITLE="${PRTITLE}"
-        String PRID="${PRID}"
+    ansiColor('xterm') {
 
-        ansiColor('xterm') {
+        timeout(5) {
 
             try {
 
@@ -58,9 +58,8 @@ node('CentOS-7') {
 
                     //TODO:: need to figure out the environment and conditions that will need this
                     // sh 'rm -rf node_modules'
-                    // sh 'npm install'
-                    // sh 'bower install'
-                    sh 'sleep 65'
+                    sh 'npm install'
+                    sh 'bower install'
 
                 }
 
