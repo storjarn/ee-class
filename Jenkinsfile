@@ -16,7 +16,7 @@ node('CentOS-7') {
 
         try {
 
-            timeout(5) {
+            timeout(1) {
 
                 stage('announce') {
                     env.NODEJS_HOME = "${tool 'node-production'}"
