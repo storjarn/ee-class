@@ -16,7 +16,7 @@ node('CentOS-7') {
 
         try {
 
-            timeout(1) {
+            timeout(5) {
 
                 stage('announce') {
                     env.NODEJS_HOME = "${tool 'node-production'}"
@@ -58,9 +58,8 @@ node('CentOS-7') {
 
                     //TODO:: need to figure out the environment and conditions that will need this
                     // sh 'rm -rf node_modules'
-                    // sh 'npm install'
-                    // sh 'bower install'
-                    sh 'sleep 65'
+                    sh 'npm install'
+                    sh 'bower install'
 
                 }
 
