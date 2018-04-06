@@ -60,9 +60,7 @@ node('CentOS-7') {
                     // sh 'rm -rf node_modules'
                     // sh 'npm install'
                     // sh 'bower install'
-                    sleep(65) {
-                        // on interrupt do
-                    }
+                    sh 'sleep 65'
 
                 }
 
