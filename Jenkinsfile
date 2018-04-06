@@ -14,9 +14,9 @@ node('CentOS-7') {
 
     ansiColor('xterm') {
 
-        timeout(5) {
+        try {
 
-            try {
+            timeout(5) {
 
                 stage('announce') {
                     env.NODEJS_HOME = "${tool 'node-production'}"
@@ -60,6 +60,7 @@ node('CentOS-7') {
                     // sh 'rm -rf node_modules'
                     sh 'npm install'
                     sh 'bower install'
+                    sh 'sleep 65'
 
                 }
 
@@ -123,16 +124,16 @@ node('CentOS-7') {
 
                     step([$class: 'StashNotifier'])
                 }
-
-            } catch (err) {
-
-                println "Failed: ${err}"
-                currentBuild.result = "FAILURE"
-                msg = notifyHipchat(currentBuild.result, "RED", true, "${err}")
-                currentBuild.description = msg
-                step([$class: 'StashNotifier'])
-                throw err
             }
+
+        } catch (err) {
+
+            println "Failed: ${err}"
+            currentBuild.result = "FAILURE"
+            msg = notifyHipchat(currentBuild.result, "RED", true, "${err}")
+            currentBuild.description = msg
+            step([$class: 'StashNotifier'])
+            throw err
         }
     }
 }
