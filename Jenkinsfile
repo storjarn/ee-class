@@ -4,132 +4,138 @@ import hudson.Util;
 
 node('CentOS-7') {
 
-    String BRANCH = "${BRANCH}"
-    String PROJECT="${PROJECT}"
-    String REPOSITORY="${REPOSITORY}"
-    String PRAUTHOR="${PRAUTHOR}"
-    String PRURL="${PRURL}"
-    String PRTITLE="${PRTITLE}"
-    String PRID="${PRID}"
+    timeout(1) {
 
-    ansiColor('xterm') {
+        String BRANCH = "${BRANCH}"
+        String PROJECT="${PROJECT}"
+        String REPOSITORY="${REPOSITORY}"
+        String PRAUTHOR="${PRAUTHOR}"
+        String PRURL="${PRURL}"
+        String PRTITLE="${PRTITLE}"
+        String PRID="${PRID}"
 
-        try {
+        ansiColor('xterm') {
 
-            stage('announce') {
-                env.NODEJS_HOME = "${tool 'node-production'}"
-                env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
+            try {
 
-                currentBuild.displayName = "#${BUILD_NUMBER}: ${BRANCH}"
-                currentBuild.description = ""
+                stage('announce') {
+                    env.NODEJS_HOME = "${tool 'node-production'}"
+                    env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
 
-                echo sh(script: 'env|sort', returnStdout: true)
+                    currentBuild.displayName = "#${BUILD_NUMBER}: ${BRANCH}"
+                    currentBuild.description = ""
 
-                echo "PROJECT - ${PROJECT}, REPOSITORY - ${REPOSITORY}, PRAUTHOR - ${PRAUTHOR}, PRURL - ${PRURL}, PRTITLE - ${PRTITLE}, PRID - ${PRID}"
+                    echo sh(script: 'env|sort', returnStdout: true)
 
+                    echo "PROJECT - ${PROJECT}, REPOSITORY - ${REPOSITORY}, PRAUTHOR - ${PRAUTHOR}, PRURL - ${PRURL}, PRTITLE - ${PRTITLE}, PRID - ${PRID}"
+
+                    step([$class: 'StashNotifier'])
+                }
+
+                /*
+                 * Delete previous runs, get the repo
+                 */
+                stage('checkout') {
+
+                    deleteDir()
+                    checkout scm
+                }
+
+                stage('install') {
+
+                    APP_VERSION = sh (
+                        script: 'npm run -s getversion',
+                        returnStdout: true
+                    ).trim()
+
+                    echo "app version: ${APP_VERSION}"
+
+                    currentBuild.displayName = currentBuild.displayName + " - " + APP_VERSION
+
+                    //:: a possible place for refactoring based on things like BRANCH, VERSION, etc.
+
+                    sh 'echo ${APP_VERSION} > VERSION'
+
+                    //TODO:: need to figure out the environment and conditions that will need this
+                    // sh 'rm -rf node_modules'
+                    // sh 'npm install'
+                    // sh 'bower install'
+                    sleep(65) {
+                        // on interrupt do
+                    }
+
+                }
+
+                stage('test') {
+
+                    env.NODE_ENV = "test"
+
+                    print "Environment will be : ${env.NODE_ENV}"
+
+                    sh 'grunt ci'
+
+                    step([
+                        $class: 'CoberturaPublisher',
+                        failNoReports: false,
+                        autoUpdateHealth: false,
+                        autoUpdateStability: false,
+                        coberturaReportFile: '**/coverage/cobertura/cobertura-coverage.xml',
+                        failUnhealthy: false,
+                        failUnstable: false,
+                        maxNumberOfBuilds: 0,
+                        onlyStable: false,
+                        sourceEncoding: 'ASCII',
+                        zoomCoverageChart: false,
+                        lineCoverageTargets: '80.0, 0, 0',
+                        methodCoverageTargets: '80.0, 0, 0',
+                        conditionalCoverageTargets: '70.0, 0, 0',
+                        packageCoverageTargets: '70.0, 0, 0',
+                        fileCoverageTargets: '70.0, 0, 0',
+                        classCoverageTargets: '70.0, 0, 0'
+                    ])
+
+                    // Jasmine/Istanbul (headless browser tests)
+                    publishHTML (
+                        target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'coverage',
+                        reportFiles: 'index.html',
+                        reportName: "Coverage HTML (Browser)"
+                    ])
+
+                    // Mocha/Istanbul (CLI tests)
+                    publishHTML (
+                        target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'coverageMocha',
+                        reportFiles: 'index.html',
+                        reportName: "Coverage HTML (CLI)"
+                    ])
+
+                }
+
+                stage('report status') {
+
+                    currentBuild.result = "SUCCESS"
+                    msg = notifyHipchat(currentBuild.result, "GREEN", false)
+                    // currentBuild.description = msg
+
+                    step([$class: 'StashNotifier'])
+                }
+
+            } catch (err) {
+
+                println "Failed: ${err}"
+                currentBuild.result = "FAILURE"
+                msg = notifyHipchat(currentBuild.result, "RED", true, "${err}")
+                currentBuild.description = msg
                 step([$class: 'StashNotifier'])
+                throw err
             }
-
-            /*
-             * Delete previous runs, get the repo
-             */
-            stage('checkout') {
-
-                deleteDir()
-                checkout scm
-            }
-
-            stage('install') {
-
-                APP_VERSION = sh (
-                    script: 'npm run -s getversion',
-                    returnStdout: true
-                ).trim()
-
-                echo "app version: ${APP_VERSION}"
-
-                currentBuild.displayName = currentBuild.displayName + " - " + APP_VERSION
-
-                //:: a possible place for refactoring based on things like BRANCH, VERSION, etc.
-
-                sh 'echo ${APP_VERSION} > VERSION'
-
-                //TODO:: need to figure out the environment and conditions that will need this
-                // sh 'rm -rf node_modules'
-                sh 'npm install'
-                sh 'bower install'
-
-            }
-
-            stage('test') {
-
-                env.NODE_ENV = "test"
-
-                print "Environment will be : ${env.NODE_ENV}"
-
-                sh 'grunt ci'
-
-                step([
-                    $class: 'CoberturaPublisher',
-                    failNoReports: false,
-                    autoUpdateHealth: false,
-                    autoUpdateStability: false,
-                    coberturaReportFile: '**/coverage/cobertura/cobertura-coverage.xml',
-                    failUnhealthy: false,
-                    failUnstable: false,
-                    maxNumberOfBuilds: 0,
-                    onlyStable: false,
-                    sourceEncoding: 'ASCII',
-                    zoomCoverageChart: false,
-                    lineCoverageTargets: '80.0, 0, 0',
-                    methodCoverageTargets: '80.0, 0, 0',
-                    conditionalCoverageTargets: '70.0, 0, 0',
-                    packageCoverageTargets: '70.0, 0, 0',
-                    fileCoverageTargets: '70.0, 0, 0',
-                    classCoverageTargets: '70.0, 0, 0'
-                ])
-
-                // Jasmine/Istanbul (headless browser tests)
-                publishHTML (
-                    target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: true,
-                    reportDir: 'coverage',
-                    reportFiles: 'index.html',
-                    reportName: "Coverage HTML (Browser)"
-                ])
-
-                // Mocha/Istanbul (CLI tests)
-                publishHTML (
-                    target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: true,
-                    reportDir: 'coverageMocha',
-                    reportFiles: 'index.html',
-                    reportName: "Coverage HTML (CLI)"
-                ])
-
-            }
-
-            stage('report status') {
-
-                currentBuild.result = "SUCCESS"
-                msg = notifyHipchat(currentBuild.result, "GREEN", false)
-                // currentBuild.description = msg
-
-                step([$class: 'StashNotifier'])
-            }
-
-        } catch (err) {
-
-            println "Failed: ${err}"
-            currentBuild.result = "FAILURE"
-            msg = notifyHipchat(currentBuild.result, "RED", true, "${err}")
-            currentBuild.description = msg
-            step([$class: 'StashNotifier'])
-            throw err
         }
     }
 }
