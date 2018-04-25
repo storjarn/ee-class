@@ -4,6 +4,8 @@ import hudson.Util;
 
 node('CentOS-7') {
 
+    @Library('rig-common')_
+
     String BRANCH = "${BRANCH}"
     String PROJECT="${PROJECT}"
     String REPOSITORY="${REPOSITORY}"
@@ -11,6 +13,8 @@ node('CentOS-7') {
     String PRURL="${PRURL}"
     String PRTITLE="${PRTITLE}"
     String PRID="${PRID}"
+
+    String APP_VERSION=""
 
     ansiColor('xterm') {
 
@@ -30,6 +34,12 @@ node('CentOS-7') {
                     echo "PROJECT - ${PROJECT}, REPOSITORY - ${REPOSITORY}, PRAUTHOR - ${PRAUTHOR}, PRURL - ${PRURL}, PRTITLE - ${PRTITLE}, PRID - ${PRID}"
 
                     step([$class: 'StashNotifier'])
+                    ciscoSpark('fe9b9100-47de-11e8-a8ad-9bd0c7f06665', '* Rig Build Status', ": origin/${BRANCH} **STARTED** (Caused by <a href=\"${RUN_CHANGES_DISPLAY_URL}\">changes</a> from ${PRAUTHOR}'s <b><a href=\"${PRURL}\">PR</a></b>)")
+
+                    // GIT_PR_EMAIL = getPREmailAddress(PROJECT, REPOSITORY, PRID)
+                    // echo "Git PR Author Email from Library: ${GIT_PR_EMAIL}"
+
+                    // sendEmailNotification("${GIT_PR_EMAIL}", "[JENKINS] ${JOB_NAME} #${BUILD_NUMBER} - ${currentBuild.result}", "Jenkins Build ${currentBuild.result}: (see ${BUILD_URL})")
                 }
 
                 /*
@@ -118,10 +128,13 @@ node('CentOS-7') {
                 stage('report status') {
 
                     currentBuild.result = "SUCCESS"
-                    msg = notifyHipchat(currentBuild.result, "GREEN", false)
+                    // msg = notifyHipchat(currentBuild.result, "GREEN", false)
                     // currentBuild.description = msg
 
                     step([$class: 'StashNotifier'])
+                    ciscoSpark('fe9b9100-47de-11e8-a8ad-9bd0c7f06665', '* Rig Build Status', ": origin/${BRANCH} (v${APP_VERSION}) **${currentBuild.result}** after ${Util.getTimeSpanString(System.currentTimeMillis() - currentBuild.startTimeInMillis)} (Caused by <a href=\"${RUN_CHANGES_DISPLAY_URL}\">changes</a> from ${PRAUTHOR}'s <b><a href=\"${PRURL}\">PR</a></b>)")
+
+                    // sendEmailNotification("${GIT_PR_EMAIL}", "[JENKINS] ${JOB_NAME} #${BUILD_NUMBER} - ${currentBuild.result}", "Jenkins Build ${currentBuild.result}: (see ${BUILD_URL})")
                 }
             }
 
@@ -129,9 +142,14 @@ node('CentOS-7') {
 
             println "Failed: ${err}"
             currentBuild.result = "FAILURE"
-            msg = notifyHipchat(currentBuild.result, "RED", true, "${err}")
-            currentBuild.description = msg
+            // msg = notifyHipchat(currentBuild.result, "RED", true, "${err}")
+            // currentBuild.description = msg
+
             step([$class: 'StashNotifier'])
+            ciscoSpark('fe9b9100-47de-11e8-a8ad-9bd0c7f06665', '* Rig Build Status', ": origin/${BRANCH} (v${APP_VERSION}) **${currentBuild.result}** after ${Util.getTimeSpanString(System.currentTimeMillis() - currentBuild.startTimeInMillis)} (Caused by <a href=\"${RUN_CHANGES_DISPLAY_URL}\">changes</a> from ${PRAUTHOR}'s <b><a href=\"${PRURL}\">PR</a></b>)")
+
+            // sendEmailNotification("${GIT_PR_EMAIL}", "[JENKINS] ${JOB_NAME} ${BUILD_NUMBER} ${currentBuild.result}", "Jenkins Build ${currentBuild.result}: (see ${BUILD_URL}): ${error}")
+
             throw err
         }
     }
@@ -165,9 +183,4 @@ def hipchat(String msg, String color = 'YELLOW', boolean notify = true, String r
         msg = '@here ' + msg
     }
     hipchatSend color: color, credentialId: 'd5a60662-27a9-46a8-8a79-fb2a28828bd9', failOnError: true, message: msg, notify: false, room: room, sendAs: sendAs, server: server, v2enabled: true
-}
-
-def sendEmailNotification(String pr_author_email, String subject, String body) {
-    //To send Email Notification to RequesterRecipientProvider (PR Owner)
-    emailext body: body, subject: subject, to: pr_author_email
 }
