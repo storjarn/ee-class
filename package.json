@@ -1,6 +1,6 @@
 {
-  "name": "rig-class.js",
-  "version": "1.1.72",
+  "name": "class.js",
+  "version": "1.1.74",
   "description": "Fast prototype based javascript classes for Node.js and the browser!",
   "licence": "LGPL-3.0",
   "main": "index.js",
@@ -70,7 +70,8 @@
     "setpatchversion": "npm version patch --no-git-tag-version --force",
     "setprereleaseversion": "npm version prerelease  --no-git-tag-version --force",
     "test": "grunt test",
-    "total.disk_usage": "du -csHh -I \"..\" ./.*",
-    "unpublishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) || npm dist-tag rm \"$(npm -s run getname)\" \"$(npm -s run generateAlphaTag)\"; npm run setpatchversion;"
+    "total.disk_usage": "du -csHh ./.",
+    "unpublishdev": "npm unpublish $(npm -s run getname)@$(npm -s run getversion) || npm dist-tag rm \"$(npm -s run getname)\" \"$(npm -s run generateAlphaTag)\"; npm run setpatchversion;",
+    "setrevision": "echo $(npm run -s getversion) > REVISION"
   }
 }

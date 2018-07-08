@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.Hash = factory(root.Class);
     }
-}(this, function(Class) {
+}(global, function(Class) {
     'use strict';
 
     var Hash = new Class({

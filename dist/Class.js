@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.Class = factory();
     }
-}(this, function() {
+}(global, function() {
     'use strict';
 
     var setSuper, setSuperPrototype;

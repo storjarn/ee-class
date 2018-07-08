@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.Namespace = factory(root.Class);
     }
-}(this, function(Class) {
+}(global, function(Class) {
     'use strict';
 
     /* @private */
@@ -30,7 +30,7 @@
 
     var assertNamespace = function(namespace, error) {
         if (!namespace || !(namespace instanceof Namespace)) {
-            throw new Error(error || "You need to provide a valid namespace.");
+            throw new Error((error || "You need to provide a valid namespace.  ") + JSON.stringify(namespace));
         }
     };
 

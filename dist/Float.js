@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.Float = factory(root.Class);
     }
-}(this, function(Class) {
+}(global, function(Class) {
     'use strict';
 
     var Float = new Class({

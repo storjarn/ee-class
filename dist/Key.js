@@ -15,7 +15,7 @@
         // Browser globals (root is window)
         root.Key = factory(root.Class);
     }
-}(this, function(Class) {
+}(global, function(Class) {
     'use strict';
 
     var Key = new Class({

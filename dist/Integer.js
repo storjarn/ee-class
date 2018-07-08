@@ -18,7 +18,7 @@
         // Browser globals (root is window)
         root.Integer = factory(root.Class, root.Float);
     }
-}(this, function(Class, Float) {
+}(global, function(Class, Float) {
     'use strict';
 
     var Integer = new Class({
